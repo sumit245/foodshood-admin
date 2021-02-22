@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Factories = require("../models/kingsgate.model");
+const Factories = require("../models/users.model");
 
 router.route("/").get(function (req, res) {
   Factories.find(function (err, factories) {

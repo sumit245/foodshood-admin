@@ -1,64 +1,58 @@
 const express = require("express");
 const router = express.Router();
 
-const Clients = require("../models/kingsgate.model");
-
+const Users = require("../models/users.model");
 router.route("/").get(function (req, res) {
-  Clients.find(function (err, clients) {
+  Users.find(function (err, users) {
     if (err) {
       console.log(err);
     } else {
-      res.json(clients);
+      res.json(users);
     }
   });
 });
-//get all data from database
-
 
 router.route("/").post(function (req, res) {
-  let client = new Clients(req.body);
-  let msg = "Hello " + client.client_name + " Welcome to our Security Site";
-  client
+  let user = new Users(req.body);
+  user
     .save()
-    .then((client) => {
-      res.status(200).json({ client: "client added successfully" });
-      //   msg91.send(client.mobile_number, msg, function (err, res) {
+    .then((user) => user)
+    .then((user) => {
+      res.status(200).json({ user: "Done..." });
+      res.send(user);
+      //   msg91.send(user.mobile_number, msg, function (err, res) {
       //     console.log(err);
       //     console.log(res);
-      //     console.log(msg + "sent to" + res + client.client_name);
+      //     console.log(msg + "sent to" + res + user.user_name);
       //   });
     })
     .catch((err) => {
       res.status(400).send("adding new Client failed");
     });
 });
-//save a singe client to database
+//save a singe user to database
 
 router.route("/:id").get(function (req, res) {
   let id = req.params.id;
-  Clients.findById(id, function (err, client) {
-    res.json(client);
+  Users.findById(id, function (err, user) {
+    res.json(user);
   });
 });
-//get specific client
-
+//get specific user
 
 router.route("/:id").post(function (req, res) {
-  Clients.findById(req.params.id, function (err, client) {
-    if (!client) res.status(404).send("data is not found");
+  Users.findById(req.params.id, function (err, user) {
+    if (!user) res.status(404).send("data is not found");
     else
-      (client.client_name = req.body.client_name),
-        (client.mobile_number = req.body.mobile_number),
-        (client.phone_number = req.body.phone_number),
-        (client.email_id = req.body.email_id),
-        (client.sector = req.body.sector),
-        (client.block = req.body.block),
-        (client.address = req.body.address),
-        (client.company = req.body.company),
-        (client.gst_num = req.body.gst_num),
-        client
+      (user.first_name = req.body.first_name),
+        (user.last_name = req.body.last_name),
+        (user.phone = req.body.phone),
+        (user.address = req.body.address),
+        (user.gst_num = req.body.gst_num),
+        (user.status= req.body.status)
+        user
           .save()
-          .then((client) => {
+          .then((user) => {
             res.json("Client Update Successfully");
           })
           .catch((err) => {
@@ -66,10 +60,10 @@ router.route("/:id").post(function (req, res) {
           });
   });
 });
-//update a client
+//update a user
 
 router.route("/:id").delete((req, res, next) => {
-  Clients.findByIdAndDelete(req.params.id, (err, data) => {
+  Users.findByIdAndDelete(req.params.id, (err, data) => {
     if (err) {
       console.log(next(err));
       res.status(200).json({ data: "deleted" });
@@ -78,6 +72,6 @@ router.route("/:id").delete((req, res, next) => {
     }
   });
 });
-//delete a client
+//delete a user
 
 module.exports = router;
