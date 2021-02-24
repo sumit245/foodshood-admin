@@ -1,0 +1,45 @@
+/* @import 'Invoice'; */
+ .lineItem > div, .deleteItem {
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+}
+ .lineItem {
+	 display: grid;
+	 grid-template-columns: 1fr repeat(2, 5fr) 2fr repeat(2, 3fr) 2fr;
+}
+ .lineItem > div {
+	 padding: 10px;
+	 border-left: 1px solid #ccc;
+	 width: 100%;
+	 line-height: 20px;
+	 min-width: 20px;
+}
+ .lineItem > div:first-of-type {
+	 padding: 10px 0;
+	 border-left: none;
+}
+ .lineItem > div:last-of-type {
+	 padding: 10px 0;
+}
+ .lineItem > div:first-of-type, .lineItem > div:nth-child(4), .lineItem > div:last-of-type {
+	 text-align: center;
+}
+ .deleteItem {
+	 color: darkred;
+	 background: none;
+	 border: 0;
+	 padding: 0;
+	 cursor: pointer;
+}
+ input, input[type=number] {
+	 padding: 5px;
+	 border: 1px dotted #d1d1d1;
+	 border-radius: 4px;
+	 min-width: 40px;
+	 width: 100%;
+}
+ input[type=number] {
+	 text-align: center;
+}
+ 
