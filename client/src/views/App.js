@@ -17,6 +17,8 @@ import LoginScreen,{ForgotPage} from './screens/LoginScreen'
 import Settings from './screens/Settings'
 import Logout from "./components/Logout";
 import PaymentScreen from "./screens/PaymentScreen";
+import AddUserPage from "./screens/AddUserPage";
+import EditUserPage from "./screens/EditUserPage";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +49,9 @@ export default class App extends Component {
           <Route path='/productdetail' component={ClientProduct }/>
           <Route path='/forgotpage' component={ForgotPage}/>
           <Route path='/billdetail' component={ClientBills}/>
-          <Route path="/Home" component={HomeScreen} />
+          <Route path="/users-dashboard" component={HomeScreen} />
+          <Route path="/add-user" component={AddUserPage}/>
+          <Route path="/edit-user" component={EditUserPage}/>
           <Route path='/logout' component={Logout} />
           <Route path="/Challans" component={ChallanScreen} />
           <Route path="/settings" component={Settings} />

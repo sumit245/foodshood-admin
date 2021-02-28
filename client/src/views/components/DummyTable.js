@@ -12,6 +12,8 @@ import * as jzip from "jszip";
 import "pdfmake";
 import $ from "jquery";
 import { deleteClient, getClients } from "../../controllers/ClientController";
+import { Edit3, Trash2 } from "react-feather";
+import { MdFolderOpen, MdViewColumn } from "react-icons/md";
 
 window.JSZip = jzip;
 const Clt = getClients();
@@ -28,16 +30,14 @@ export default class DummyTable extends Component {
   componentDidMount() {
     const self = this;
     var indices = [];
-    
+
     $("#deleteBtnGlobal").on("click", function () {
       deleteClient(indices[0]);
       window.location.href = "/";
     });
     $("#clientResponsive tfoot th").each(function () {
       var title = $(this).text();
-      $(this).html(
-        '<input type="text" placeholder="Search ' + title + '" />'
-      );
+      $(this).html('<input type="text" placeholder="Search ' + title + '" />');
     });
     Clt.then((data) => data)
       .then(
@@ -87,7 +87,11 @@ export default class DummyTable extends Component {
                 var textval = $(this).text();
                 rowdata.push(textval);
               });
-            client = arrayFindObjectByProp(clients, "mobile_number", rowdata[3]);
+            client = arrayFindObjectByProp(
+              clients,
+              "mobile_number",
+              rowdata[3]
+            );
             indices.push(client._id);
           } else {
             selected.splice(index, 1);
@@ -115,162 +119,154 @@ export default class DummyTable extends Component {
     const { tableData } = this.state;
     const isLoaded = this.props.isLoaded;
     return (
-      <div>
-        <table
-          id="clientResponsive"
-          className=" table"
-          style={{ width: 1260 }}
-        >
+      <>
+        <table id="clientResponsive" className=" table">
           <thead>
             <tr>
-              <th></th>
               <th
                 style={{
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
-                  padding:4
+                  padding: 4,
                 }}
               >
-                Client Name
+                User Name
               </th>
               <th
                 style={{
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
-                  padding:4
+                  padding: 4,
                 }}
               >
-                Company
+                Mobile Number
               </th>
-              <th
+              {/* <th
                 style={{
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
-                  padding:4
-                }}
-              >
-                Mobile
-              </th>
-              <th
-                style={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  padding:4
-                }}
-              >
-                Outstanding
-              </th>
-              <th
-                style={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  padding:4
-                }}
-              >
-                Sector
-              </th>
-              <th
-                style={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  padding:4
-                }}
-              >
-                Block
-              </th>
-              <th
-                style={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  padding:4
+                  padding: 4,
                 }}
               >
                 Address
+              </th> */}
+              <th
+                style={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  padding: 4,
+                }}
+              >
+                Email
+              </th>
+              <th
+                style={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  padding: 4,
+                }}
+              >
+                Status
+              </th>
+              <th
+                style={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  padding: 4,
+                }}
+              >
+                Actions
               </th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             {tableData.map((data, key) => {
               return (
                 <tr key={key}>
-                  <td></td>
                   <td
                     style={{
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
-                      padding: 4
+                      padding: 4,
                     }}
                   >
-                    {data.client_name}
+                    {data.first_name + " " + data.last_name}
                   </td>
                   <td
                     style={{
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      whiteSpace: "nowrap", padding: 4
+                      whiteSpace: "nowrap",
+                      padding: 4,
                     }}
                   >
-                    {data.company}
+                    {data.phone}
                   </td>
+                  {/* <td
+                    style={{
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      padding: 4,
+                    }}
+                  >
+                    {data.address.flat_num +
+                      "," +
+                      data.address.locality +
+                      "," +
+                      data.address.sector +
+                      "," +
+                      data.address.block}
+                  </td> */}
                   <td
                     style={{
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      whiteSpace: "nowrap", padding: 4
+                      whiteSpace: "nowrap",
+                      padding: 4,
                     }}
                   >
-                    {data.mobile_number}
-                  </td>
-                  <td
-                    style={{
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap", padding: 4
-                    }}
-                  >
-                    {data.outstanding || "₹0.00"}
+                    {data.email_id}
                   </td>
 
                   <td
                     style={{
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      whiteSpace: "nowrap", padding: 4
+                      whiteSpace: "nowrap",
+                      padding: 4,
+                      color:'green'
                     }}
                   >
-                    {data.sector}
+                    {data.status || 'Active' }
                   </td>
                   <td
                     style={{
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      whiteSpace: "nowrap", padding: 4
+                      whiteSpace: "nowrap",
+                      padding: 4,
                     }}
                   >
-                    {data.block}
+                    
+                    <MdViewColumn size={18} />
+                    <Edit3 size={18} />
+                    <Trash2 size={18} />
+
                   </td>
-                  <td style={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap", padding: 4
-                  }}>{data.address}</td>
                 </tr>
               );
             })}
           </tbody>
           <tfoot>
             <tr>
-              <td></td>
-              <th></th>
-              <th></th>
               <th></th>
               <th></th>
               <th></th>
@@ -279,7 +275,7 @@ export default class DummyTable extends Component {
             </tr>
           </tfoot>
         </table>
-      </div>
+      </>
     );
   }
 }

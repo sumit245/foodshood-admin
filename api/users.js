@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-
 const Users = require("../models/users.model");
 router.route("/").get(function (req, res) {
-  Users.find(function (err, users) {
+    Users.find(function (err, users) {
     if (err) {
       console.log(err);
     } else {

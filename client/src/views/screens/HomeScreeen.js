@@ -7,6 +7,15 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import { Dropdown } from "react-bootstrap";
 import AddUserForm from "../components/AddUserForm";
 import $ from "jquery";
+import {
+  ArrowRightCircle,
+  Briefcase,
+  PieChart,
+  UserPlus,
+  Users,
+} from "react-feather";
+import { Link } from "react-router-dom";
+import { MdRestaurantMenu } from "react-icons/md";
 
 const Clt = getClients();
 export default class HomeScreeen extends Component {
@@ -25,16 +34,17 @@ export default class HomeScreeen extends Component {
     this.setState({ addState: true });
   }
   componentDidMount() {
-    $('#drpmoreadd').hover(function () {
-      $('#drpmoreadd').css('color','white')
+    $("#drpmoreadd").hover(
+      function () {
+        $("#drpmoreadd").css("color", "white");
         // over
-        
-      }, function () {
-        $('#drpmoreadd').css('color','#777')
+      },
+      function () {
+        $("#drpmoreadd").css("color", "#777");
         // out
       }
     );
-    
+
     Clt.then((data) => data)
       .then(
         (json) => {
@@ -59,47 +69,91 @@ export default class HomeScreeen extends Component {
           <div className="contact-wrapper">
             <SideNav />
             <div
-              className="d-flex mx-5 content content-component"
-              style={{ flexDirection: "column" }}
+              style={{
+                position: "absolute",
+                left: 157,
+                top: 20,
+                width: 1200,
+                overflowX: "hidden",
+              }}
             >
-              <div
-                 className={
-                  addState
-                    ? ""
-                    : "d-sm-flex align-items-center justify-content-end mg-b-20 mg-lg-b-25 mg-xl-b-30 px-4"
-                }
-                style={{
-                  width: "auto",
-                  flex: 1,
-                  display: "flex",
-                  zIndex: 1000,
-                  visibility: addState ? "hidden" : "visible",
-                  flexDirection: "row",
-                }}
-              >
-                <button
-                  onClick={this.populateAddForm}
-                  className="btn btn-sm  btn-icon btn-primary px-4 mx-1"
+              <div className="row mb-4">
+                <div
+                  className="col-sm-3 ml-5 col-lg-3 px-0"
+                  style={{ backgroundColor: "aliceblue" }}
                 >
-                  <span data-toggle="tooltip" title="Add New Contact">
-                    Add
-                  </span>
-                </button>
-
-                <Dropdown>
-                  <Dropdown.Toggle id="drpmoreadd" className="btn btn-sm btn-icon btn-white px-4">
-                    <span data-toggle="tooltip" title="More">
-                      More
-                    </span>
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Import</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Export</Dropdown.Item>
-                    <Dropdown.Item id="deleteBtnGlobal">Delete</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+                  <div
+                    className="card card-body px-1"
+                    style={{ backgroundColor: "blue" }}
+                  >
+                    <div className="row">
+                      <div className="col-sm-8">
+                        <h6 className="tx-normal tx-11 tx-spacing-1 tx-white tx-semibold mg-b-1">
+                          All Users
+                        </h6>
+                        <h6 className="tx-40 tx-spacing-1 tx-white tx-semibold mg-b-5">
+                          10
+                        </h6>
+                      </div>
+                      <div className="col-sm-4 mt-n3">
+                        <Users size={40}  />
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                {/* All Users */}
+                <div
+                  className="col-sm-3 ml-5 col-lg-3 px-0"
+                  style={{ backgroundColor: "teal" }}
+                >
+                  <div
+                    className="card card-body px-1"
+                    style={{ backgroundColor: "green" }}
+                  >
+                    <div className="row">
+                      <div className="col-sm-8">
+                        <h6 className="tx-normal tx-11 tx-spacing-1 tx-white tx-semibold mg-b-1">
+                          Active Users
+                        </h6>
+                        <h6 className="tx-40 tx-spacing-1 tx-white tx-semibold mg-b-5">
+                          400
+                        </h6>
+                      </div>
+                      <div className="col-sm-4">
+                        <Users size={40} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/*Active Users  */}
+                <div
+                  className="col-sm-3 ml-5 col-lg-3 px-0"
+                  style={{ backgroundColor: "red" }}
+                >
+                  <div
+                    className="card card-body px-1"
+                    style={{ backgroundColor: "#ff0000" }}
+                  >
+                    <div className="row">
+                      <div className="col-sm-8">
+                        <h6 className="tx-normal tx-11 tx-spacing-1 tx-white tx-semibold mg-b-1">
+                          Inactive Users
+                        </h6>
+                        <h2 className="tx-40 tx-spacing-1 tx-white tx-semibold mg-b-5">
+                          10
+                        </h2>
+                      </div>
+                      <div className="col-sm-4 mt-n3">
+                        <Users size={40} color="white" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Inactive Users */}
               </div>
+              
               <ErrorBoundary>
                 {addState ? (
                   <AddUserForm />

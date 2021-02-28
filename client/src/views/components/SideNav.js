@@ -2,161 +2,342 @@ import React, { Component } from "react";
 import $ from "jquery";
 import { NavLink as Link } from "react-router-dom";
 import {
-  Home,
-  User,
-  FileText,
-  Tag,
-  CreditCard,
-  ShoppingBag,
-  Briefcase,
-  Gift,
-  Mail,
-} from "react-feather";
-import { MdCancel, MdRestaurantMenu, MdSpeakerGroup } from "react-icons/md";
+  MdBubbleChart,
+  MdCancel,
+  MdCardGiftcard,
+  MdCardMembership,
+  MdHome,
+  MdPerson,
+  MdReceipt,
+  MdRestaurantMenu,
+  MdShoppingCart
+} from "react-icons/md";
 
 export default class SideNav extends Component {
+  componentDidMount() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    }
+  }
   render() {
     return (
       <>
         {/* <div className="contact-wrapper"> */}
-        <div className="contact-navleft" style={{ width: 150 }}>
+        <div className="contact-navleft" style={{ width: 155 }}>
           <nav className="nav">
-            <Link to="/" id="dash" className="nav-link py-0 mg-t-0 mt-0">
-              <span
-                data-toggle="tooltip"
-                title="Clients"
-                data-placement="right"
+            <div>
+              <Link to="/" className="nav-link mg-t-0 mg-b-0">
+                <span
+                  data-toggle="tooltip"
+                  title="Dashboard"
+                  data-placement="right"
+                >
+                  <MdHome size={18} />
+                  &nbsp;Dashboard
+                </span>
+              </Link>
+            </div>
+            {/* Dashboard */}
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                id="homedash"
+                className="collapsible"
               >
-                <Home />
-                Dashboard
-              </span>
-            </Link>
-            <Link
-              to="/Home"
-              id="homedash"
-              className="nav-link py-0 mg-t-0 mt-0"
-            >
-              <span
-                data-toggle="tooltip"
-                title="Clients"
-                data-placement="right"
+                <span
+                  data-toggle="tooltip"
+                  title="Users"
+                  data-placement="right"
+                >
+                  <MdPerson size={18} />
+                  &nbsp;Users
+                </span>
+              </p>
+              <div class="collapse-content py-0">
+                <Link
+                  to="/users-dashboard"
+                  id="userDashboard"
+                  className="nav-link mg-t-0 mt-0 mg-b-0"
+                  style={{height:'auto'}}
+                >
+                  {" "}
+                  Dashboard
+                </Link>
+                <Link
+                  to="/add-user"
+                  id="addUser"
+                  className="nav-link mg-t-0 mt-0 mg-b-0"
+                  style={{height:'auto'}}
+                >
+                  {" "}
+                  Add Users
+                </Link>
+                <Link
+                  to="/edit-user"
+                  id="editUser"
+                  className="nav-link mg-t-0 mt-0 mg-b-0"
+                  style={{height:'auto'}}
+                >
+                  {" "}
+                  Edit Users
+                </Link>
+              </div>
+            </div>
+            {/* User */}
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                id="restdash"
+                className="collapsible"
               >
-                <User />
-                User
-              </span>
-            </Link>
-            <Link
-              to="/Challans"
-              id="dashClient"
-              className="nav-link mg-t-0 py-0 mt-0"
-            >
-              <span
-                data-toggle="tooltip"
-                title="Challans"
-                data-placement="right"
+                <span
+                  data-toggle="tooltip"
+                  title="Restaurants"
+                  data-placement="right"
+                >
+                  <MdRestaurantMenu size={18} />
+                  &nbsp;Restaurants
+                </span>
+              </p>
+              <div class="collapse-content">
+                <Link
+                  to="/restaurant-dashboard"
+                  id="dashRestaurant"
+                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >Dashboard
+                </Link>
+                <Link
+                  to="/restaurant-list"
+                  id="listRestaurant"
+                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >View</Link>
+                <Link
+                  to="/restaurant-unapproved"
+                  id="unapprovedRestaurant"
+                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >Unapproved</Link>
+                <Link
+                  to="/restaurant-add"
+                  id="addRestaurant"
+                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >Add New</Link>
+              </div>
+            </div>
+            {/* Restaurant */}
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                id="orderDash"
+                className="collapsible"
               >
-                <MdRestaurantMenu />
-                Restaurant
-              </span>
-            </Link>
-            <Link
-              to="/Bills"
-              id="dashBill"
-              className="nav-link mg-t-0 py-0 mt-0"
-              data-toggle="tab"
-            >
-              <span data-toggle="tooltip" title="Bills" data-placement="right">
-                <Briefcase />
-                Orders
-              </span>
-            </Link>
-            <Link
-              to="/Payments"
-              id="dashPay"
-              className="nav-link mg-t-0 py-0 mt-0"
-            >
-              <span
-                data-toggle="tooltip"
-                title="Payments"
-                data-placement="right"
+                <span
+                  data-toggle="tooltip"
+                  title="Orders"
+                  data-placement="right"
+                >
+                  <MdShoppingCart size={18} />
+                  &nbsp;Orders
+                </span>
+              </p>
+              <div class="collapse-content">
+                <Link
+                  to="/view-all"
+                  id="viewOrders"
+                  className="nav-link mg-t-0 py-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >
+                  {" "}
+                  View All
+                </Link>
+                <Link
+                  to="/add-orders"
+                  id="addOrders"
+                  className="nav-link mg-t-0 py-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >
+                  {" "}
+                  Add Order
+                </Link>
+                <Link
+                  to="/cancelled-orders"
+                  id="cancelledOrders"
+                  className="nav-link mg-t-0 py-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >
+                  {" "}
+                  Cancelled
+                </Link>
+                <Link
+                  to="/accepted-orders"
+                  id="acceptedOrders"
+                  className="nav-link mg-t-0 py-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >
+                  {" "}
+                  Accepted
+                </Link>
+              </div>
+            </div>
+            {/* orders */}
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                id="invoice"
+                className="collapsible"
               >
-                <FileText />
-                Documents
-              </span>
-            </Link>
-            <Link
-              to="/Products"
-              id="dashProd"
-              className="nav-link mg-t-0 py-0 mt-0"
-            >
-              <span
-                data-toggle="tooltip"
-                title="Product"
-                data-placement="right"
+                <span
+                  data-toggle="tooltip"
+                  title="Invoices"
+                  data-placement="right"
+                >
+                  <MdReceipt size={18} />
+                  &nbsp;Invoice
+                </span>
+              </p>
+              <div class="collapse-content">
+                <Link
+                  to="/invoice-view"
+                  id="viewInvoice"
+                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >View All</Link>
+                <Link
+                  to="/add-invoice"
+                  id="invoiceAdd"
+                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >Add</Link>
+                <Link
+                  to="/edit-invoice"
+                  id="invoiceEdits"
+                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >Edit</Link>
+              </div>
+            </div>
+            {/* invoice */}
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                id="coupons"
+                className="collapsible"
               >
-                <Gift />
-                Coupons
-              </span>
-            </Link>
-            <Link
-              to="/Products"
-              id="dashCancel"
-              className="nav-link mg-t-0 py-0 mt-0"
-            >
-              <span
-                data-toggle="tooltip"
-                title="Product"
-                data-placement="right"
+                <span
+                  data-toggle="tooltip"
+                  title="Coupons"
+                  data-placement="right"
+                >
+                  <MdCardGiftcard size={18} />
+                  &nbsp;Coupons
+                </span>
+              </p>
+              <div class="collapse-content">
+                <Link
+                  to="/restaurant-dashboard"
+                  id="dashRestaurant"
+                  className="nav-link mg-t-0 py-0 mt-0"
+                >
+                  {" "}
+                  History
+                </Link>
+              </div>
+            </div>
+            {/* Coupons */}
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                id="homedash"
+                className="collapsible"
               >
-                <MdCancel />
-                Cancellations
-              </span>
-            </Link>
-            <Link
-              to="/Products"
-              id="dashTicket"
-              className="nav-link mg-t-0 py-0 mt-0"
-            >
-              <span
-                data-toggle="tooltip"
-                title="Product"
-                data-placement="right"
+                <span
+                  data-toggle="tooltip"
+                  title="Users"
+                  data-placement="right"
+                >
+                  <MdCancel size={18} />
+                  &nbsp;Cancellations
+                </span>
+              </p>
+              <div class="collapse-content">
+                <Link
+                  to="/restaurant-dashboard"
+                  id="dashRestaurant"
+                  className="nav-link mg-t-0 py-0 mt-0"
+                >
+                  {" "}
+                  Dashboard
+                </Link>
+              </div>
+            </div>
+            {/* Cancellations   */}
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                id="homedash"
+                className="collapsible"
               >
-                <MdSpeakerGroup />
-                Tickets
-              </span>
-            </Link>
-          
-            <Link
-              to="/Products"
-              id="dashEarn"
-              className="nav-link mg-t-0 py-0 mt-0"
-            >
-              <span
-                data-toggle="tooltip"
-                title="Product"
-                data-placement="right"
+                <span
+                  data-toggle="tooltip"
+                  title="Users"
+                  data-placement="right"
+                >
+                  <MdBubbleChart size={18} />
+                  Site Earnings
+                </span>
+              </p>
+              <div class="collapse-content">
+                <Link
+                  to="/restaurant-dashboard"
+                  id="dashRestaurant"
+                  className="nav-link mg-t-0 py-0 mt-0"
+                >
+                  {" "}
+                  Dashboard
+                </Link>
+              </div>
+            </div>
+            {/* Site Earning */}
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                id="homedash"
+                className="collapsible"
               >
-                <Mail />
-                Site Earnings
-              </span>
-            </Link>
-          
-            <Link
-              to="/Products"
-              id="dashPay"
-              className="nav-link mg-t-0 py-0 mt-0"
-            >
-              <span
-                data-toggle="tooltip"
-                title="Product"
-                data-placement="right"
-              >
-                <CreditCard />
-                Payments
-              </span>
-            </Link>
-          
+                <span
+                  data-toggle="tooltip"
+                  title="Users"
+                  data-placement="right"
+                >
+                  <MdCardMembership size={18} />
+                  &nbsp;Payments
+                </span>
+              </p>
+              <div class="collapse-content">
+                <Link
+                  to="/restaurant-dashboard"
+                  id="dashRestaurant"
+                  className="nav-link mg-t-0 py-0 mt-0"
+                >
+                  {" "}
+                  Dashboard
+                </Link>
+              </div>
+            </div>
+            {/* Payments  */}
           </nav>
         </div>
         {/* contact-navleft */}

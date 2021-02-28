@@ -5,8 +5,6 @@ const path = require("path");
 require("./database/database");
 const invoice=require('./api/invoice')
 const restaurant=require('./api/restaurant')
-const factories=require("./api/factories")
-const groups=require("./api/groups");
 const payments=require("./api/payments")
 const staff=require("./api/staffs")
 const subscriptions=require('./api/subscriptions')
@@ -21,8 +19,6 @@ app.use(bodyParser.json({'limit':'50mb'}));
 app.use(cors());
 app.use("/api/restaurant",restaurant)
 app.use("/api/invoice",invoice)
-app.use("/api/factories",factories)
-app.use("/api/groups",groups)
 app.use("/api/payment",payments)
 app.use("/api/staff",staff)
 app.use("/api/subscriptions",subscriptions)

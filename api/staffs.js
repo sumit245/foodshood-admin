@@ -58,6 +58,7 @@ router.route("/:id").delete((req, res, next) => {
       console.log("deleted_succesfully");
     }
   });
+})
   router.route("/:id").put((req, res, next) => {
   Staff.findByIdAndDelete(req.params.id, (err, data) => {
 
@@ -69,6 +70,4 @@ router.route("/:id").delete((req, res, next) => {
     }
   });
 });
-
-
-module.exports = router;
+module.exports=router;
