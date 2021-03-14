@@ -95,8 +95,8 @@ export default class LoginScreen extends Component {
         <footer className="footer">
 
           <div>
-            <span>© Eincopsoft </span>
-            <span>Created by <a href="#">Eincopsoft</a></span>
+            <span>© Srpgroup </span>
+            <span>Created by <a href="#">Srpgroup</a></span>
           </div>
           <div>
             <nav className="nav">

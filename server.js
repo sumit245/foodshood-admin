@@ -10,6 +10,7 @@ const staff=require("./api/staffs")
 const subscriptions=require('./api/subscriptions')
 const tasks=require("./api/tasks")
 const users = require("./api/users");
+const restaurantlogin = require("./api/restaurantlogin");
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use("/api/staff",staff)
 app.use("/api/subscriptions",subscriptions)
 app.use("/api/tasks",tasks)
 app.use("/api/users", users);
+app.use("/api/restaurantlogin", restaurantlogin);
 
 // app.use(express.static(path.join(__dirname, './build')))
 // app.get("*", (req, res) => {
@@ -32,6 +34,7 @@ app.use("/api/users", users);
 //     url = url.substring(1);
 //   res.sendFile(url);
 // });
+
 if(process.env.NODE_ENV=='production'){
   app.use(express.static(path.join(__dirname, "./build")));
   app.get("/*", (req, res) => {

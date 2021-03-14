@@ -19,6 +19,10 @@ let Restaurant = new Schema({
     type: String,
   },
 
+  about:{
+    type:String
+  },
+
   address: {
     city: { type: String },
     area: {
