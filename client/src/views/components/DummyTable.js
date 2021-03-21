@@ -3,24 +3,24 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "datatables.net-buttons-dt";
-import "datatables.net-buttons/js/buttons.html5.js";
+// import "datatables.net-buttons/js/buttons.html5.js";
 import "datatables.net-buttons-dt/css/buttons.dataTables.css";
-import "datatables.net-select-dt";
 import "../../assets/css/dashforge.contacts.css";
-import { arrayFindObjectByProp } from "../../helper/arrayFindObjectByProp";
+// import { arrayFindObjectByProp } from "../../helper/arrayFindObjectByProp";
 import * as jzip from "jszip";
 import "pdfmake";
 import $ from "jquery";
 import { deleteClient, getClients } from "../../controllers/ClientController";
-import { Edit3, Trash2 } from "react-feather";
-import { MdFolderOpen, MdViewColumn } from "react-icons/md";
+import { Edit3, Eye, Trash2 } from "react-feather";
+import { Modal, Button } from "react-bootstrap";
+
 
 window.JSZip = jzip;
 const Clt = getClients();
 export default class DummyTable extends Component {
   constructor(props) {
     super(props);
-    this.state = { loading: false, tableData: [] };
+    this.state = { loading: false, tableData: [], showDeleteModal: false, currentindex: '',viewPage:false,editPage:false };
   }
 
   shouldComponentUpdate() {
@@ -28,13 +28,6 @@ export default class DummyTable extends Component {
   }
 
   componentDidMount() {
-    const self = this;
-    var indices = [];
-
-    $("#deleteBtnGlobal").on("click", function () {
-      deleteClient(indices[0]);
-      window.location.href = "/";
-    });
     $("#clientResponsive tfoot th").each(function () {
       var title = $(this).text();
       $(this).html('<input type="text" placeholder="Search ' + title + '" />');
@@ -43,81 +36,35 @@ export default class DummyTable extends Component {
       .then(
         (json) => {
           this.setState({ isLoaded: true, tableData: json });
-        },
-        (err) => {
-          this.setState({ isLoaded: true, err });
-        }
-      )
+        })
       .then((json) => {
-        var selected = [];
-        var table = $("#clientResponsive").DataTable({
+        $("#clientResponsive").DataTable({
           paging: true,
           dom: "Bfrtip",
           responsive: true,
           buttons: [],
-          initComplete: function () {
-            // Apply the search
-            this.api()
-              .columns()
-              .every(function () {
-                var that = this;
-                return $("input", this.footer()).on(
-                  "keyup change clear",
-                  function () {
-                    if (that.search() !== this.value) {
-                      that.search(this.value).draw();
-                    }
-                  }
-                );
-              });
-          },
-        });
-        table.on("click", " tbody tr", function () {
-          var id = this.id;
-          var index = $.inArray(id, selected);
-          var clients = self.props.userdata;
-          var rowdata = [];
-          let client = {};
-          if (index === -1) {
-            selected.push(id);
-            $(this)
-              .closest("tr")
-              .find("td")
-              .each(function () {
-                var textval = $(this).text();
-                rowdata.push(textval);
-              });
-            client = arrayFindObjectByProp(
-              clients,
-              "mobile_number",
-              rowdata[3]
-            );
-            indices.push(client._id);
-          } else {
-            selected.splice(index, 1);
-          }
-          $(this).toggleClass("selected");
-        });
-        table.on("dblclick", "tbody tr", function () {
-          $(this).addClass("selected");
-          var val = $(this).closest("tr").find("td:eq(3)").text();
-          console.log(val);
-          var new_url = "/clientdetail?data=" + val;
-
-          $("#clientResponsive").hide();
-          $("#clientResponsive_wrapper").hide();
-          window.location.href = new_url;
         });
       })
       .catch((err) => {
         console.log(err);
       });
 
-    console.log(indices);
+  }
+  handleClose = () => {
+    this.setState({ showDeleteModal: false })
+  }
+  handleDelete = () => {
+    deleteClient(this.state.currentindex)
+    window.location.reload()
   }
   render() {
-    const { tableData } = this.state;
-    const isLoaded = this.props.isLoaded;
+    const { tableData, showDeleteModal } = this.state;
+    if(this.state.viewPage===true){
+      window.location.href='/view-user?id='+this.state.currentindex
+    }
+    else if(this.state.editPage===true){
+      window.location.href='/edit-user?id='+this.state.currentindex
+    }
     return (
       <>
         <table id="clientResponsive" className=" table">
@@ -143,16 +90,6 @@ export default class DummyTable extends Component {
               >
                 Mobile Number
               </th>
-              {/* <th
-                style={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  padding: 4,
-                }}
-              >
-                Address
-              </th> */}
               <th
                 style={{
                   overflow: "hidden",
@@ -197,7 +134,7 @@ export default class DummyTable extends Component {
                       padding: 4,
                     }}
                   >
-                    {data.first_name + " " + data.last_name}
+                    {data.first_name}{" "} {data.last_name}
                   </td>
                   <td
                     style={{
@@ -209,22 +146,6 @@ export default class DummyTable extends Component {
                   >
                     {data.phone}
                   </td>
-                  {/* <td
-                    style={{
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                      padding: 4,
-                    }}
-                  >
-                    {data.address.flat_num +
-                      "," +
-                      data.address.locality +
-                      "," +
-                      data.address.sector +
-                      "," +
-                      data.address.block}
-                  </td> */}
                   <td
                     style={{
                       overflow: "hidden",
@@ -242,10 +163,10 @@ export default class DummyTable extends Component {
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
                       padding: 4,
-                      color:'green'
+                      color: 'green'
                     }}
                   >
-                    {data.status || 'Active' }
+                    {data.status || 'Active'}
                   </td>
                   <td
                     style={{
@@ -255,10 +176,10 @@ export default class DummyTable extends Component {
                       padding: 4,
                     }}
                   >
-                    
-                    <MdViewColumn size={18} />
-                    <Edit3 size={18} />
-                    <Trash2 size={18} />
+
+                    <Eye onClick={() => { this.setState({ viewPage:true, currentindex: data._id }) }} size={18} />
+                    <Edit3 onClick={() => { this.setState({ editPage:true, currentindex: data._id }) }} size={18} />
+                    <Trash2 onClick={() => { this.setState({ showDeleteModal: true, currentindex: data._id }) }} size={18} />
 
                   </td>
                 </tr>
@@ -275,6 +196,24 @@ export default class DummyTable extends Component {
             </tr>
           </tfoot>
         </table>
+        <Modal
+          show={showDeleteModal}
+          onHide={this.handleClose}
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Are you sure you want to delete? Action is irreversible!!!
+        </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+          </Button>
+            <Button onClick={this.handleDelete} variant="danger">Delete</Button>
+          </Modal.Footer>
+        </Modal>
       </>
     );
   }

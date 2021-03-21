@@ -35,7 +35,7 @@ export default class LoginScreen extends Component {
       <div style={{ height: 510, }}>
         <header className="navbar navbar-header navbar-header-fixed">
           <div className="navbar-brand">
-            <a className="df-logo">Munky<span>box</span></a>
+            <Link className="df-logo">Munky<span>box</span></Link>
           </div>{/* navbar-brand */}
         </header>{/* navbar */}
         <div className="content content-fixed content-auth">
@@ -96,13 +96,13 @@ export default class LoginScreen extends Component {
 
           <div>
             <span>© Srpgroup </span>
-            <span>Created by <a href="#">Srpgroup</a></span>
+            <span>Created by <Link to="#">Srpgroup</Link></span>
           </div>
           <div>
             <nav className="nav">
-              <a href="#" className="nav-link">Licenses</a>
-              <a href="#" className="nav-link">Change Log</a>
-              <a href="#" className="nav-link">Get Help</a>
+              <Link to="#" className="nav-link">Licenses</Link>
+              <Link to="#" className="nav-link">Change Log</Link>
+              <Link to="#" className="nav-link">Get Help</Link>
             </nav>
           </div>
         </footer>
@@ -117,7 +117,7 @@ export class ForgotPage extends Component {
       <div style={{ height: 510, }}>
         <header className="navbar navbar-header navbar-header-fixed">
           <div className="navbar-brand">
-            <a href="../../index.html" className="df-logo">Munky<span>box</span></a>
+            <Link to="../../index.html" className="df-logo">Munky<span>box</span></Link>
           </div>{/* navbar-brand */}
         </header>{/* navbar */}
         <div className="content content-fixed content-auth-alt">
@@ -151,14 +151,14 @@ export class ForgotPage extends Component {
         <footer className="footer">
 
           <div>
-            <span>© Eincopsoft </span>
-            <span>Created by <a href="#">Eincopsoft</a></span>
+            <span>© Srpgroup </span>
+            <span>Created by <Link to="#">Srpgroup</Link></span>
           </div>
           <div>
             <nav className="nav">
-              <a href="#" className="nav-link">Licenses</a>
-              <a href="#" className="nav-link">Change Log</a>
-              <a href="#" className="nav-link">Get Help</a>
+              <Link to="#" className="nav-link">Licenses</Link>
+              <Link to="#" className="nav-link">Change Log</Link>
+              <Link to="#" className="nav-link">Get Help</Link>
             </nav>
           </div>
         </footer>

@@ -9,6 +9,7 @@ import CreateUserForm from "../components/CreateUserForm";
 import $ from "jquery";
 import CompanySetup from "../components/CompanySetup";
 import Smssetup from "../components/Smssetup";
+import { Link } from 'react-router-dom'
 
 export default class Settings extends Component {
   state = {
@@ -45,8 +46,7 @@ export default class Settings extends Component {
         $("#profile").removeClass("active");
         $("#company").removeClass("active");
         $("#sms").addClass("active");
-
-
+        break;
       default:
         break;
     }
@@ -92,27 +92,27 @@ export default class Settings extends Component {
                         onClick={() => this.handleChange("profile")}
                         style={{ cursor: "pointer" }}
                       >
-                        <a id="profile" className="nav-link">
+                        <Link id="profile" className="nav-link">
                           <User size={18} />
                           Profile Setting
-                        </a>
+                        </Link>
                       </li>
                       <li
                         className="nav-item"
                         onClick={() => this.handleChange("users")}
                         style={{ cursor: "pointer" }}
                       >
-                        <a className="nav-link" id="users">
-                          <Users/>
+                        <Link className="nav-link" id="users">
+                          <Users />
                           Users Settings
-                        </a>
+                        </Link>
                       </li>
                       <li
                         className="nav-item"
                         onClick={() => this.handleChange("company")}
                         style={{ cursor: "pointer" }}
                       >
-                        <a className="nav-link" id="company">
+                        <Link className="nav-link" id="company">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="18"
@@ -131,23 +131,23 @@ export default class Settings extends Component {
                             <line x1="7" y1="3.5" x2="17" y2="8.5"></line>
                           </svg>
                           Company Setting
-                        </a>
+                        </Link>
                       </li>
                       <li
                         className="nav-item"
                         onClick={() => this.handleChange("sms")}
                         style={{ cursor: "pointer" }}
                       >
-                        <a className="nav-link" id="users">
-                          
+                        <Link className="nav-link" id="users">
+
                           SMS config
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </ul>
                 </div>
               </div>
-              {url === "settingProfile" ? <ViewProfile /> : url==='settingCompany'?<CompanySetup/> : url==="settingSMS"? <Smssetup />:<CreateUserForm/>}
+              {url === "settingProfile" ? <ViewProfile /> : url === 'settingCompany' ? <CompanySetup /> : url === "settingSMS" ? <Smssetup /> : <CreateUserForm />}
             </div>
             {/* df-example */}
           </div>

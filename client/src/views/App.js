@@ -13,6 +13,7 @@ import AddUserPage from "./screens/AddUserPage";
 import EditUserPage from "./screens/EditUserPage";
 import AddRestaurantPage from "./screens/AddRestaurantPage";
 import RestaurantScreen from "./screens/RestaurantScreen";
+import ViewUser from './screens/ViewUser'
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +43,7 @@ export default class App extends Component {
           )}
           <Route path="/forgotpage" component={ForgotPage} />
           <Route path="/users-dashboard" component={HomeScreen} />
+          <Route path="/view-user" component={ViewUser}/>
           <Route path="/add-user" component={AddUserPage} />
           <Route path="/edit-user" component={EditUserPage} />
           <Route path="/restaurant-add" component={AddRestaurantPage} />

@@ -38,9 +38,9 @@ export default class TopNav extends Component {
       <>
         <header className="navbar navbar-header navbar-header-fixed">
           <div className="navbar-brand">
-            <a href="../../index.html" className="df-logo">
+            <Link to="../../index.html" className="df-logo">
               Munky<span>box</span>
-            </a>
+            </Link>
           </div>
           {/* navbar-brand */}
           <div id="navbarMenu" className="navbar-menu-wrapper">
@@ -68,7 +68,8 @@ export default class TopNav extends Component {
               <Bell/>
             </div>
             <div className="dropdown dropdown-profile">
-              <a
+              <Link
+                to='#'
                 className="dropdown-link"
                 data-toggle="dropdown"
                 data-display="static"
@@ -82,7 +83,7 @@ export default class TopNav extends Component {
                 <div className="avatar avatar-sm">
                   <Avatar className="rounded-circle">Ad</Avatar>
                 </div>
-              </a>
+              </Link>
               {/* dropdown-link */}
               {/* dropdown-link */}
               <div

@@ -4,7 +4,6 @@ import SideNav from "../components/SideNav";
 import "../../assets/css/dashforge.dashboard.css";
 import {
   ArrowRightCircle,
-  BarChart2,
   Briefcase,
   PieChart,
   UserPlus,

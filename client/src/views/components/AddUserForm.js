@@ -2,36 +2,42 @@ import React, { Component } from "react";
 import "jquery";
 import "../../assets/css/dashforge.css";
 import { addClient } from "../../controllers/ClientController";
-import $ from "jquery";
 
 export default class AddUserForm extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeHandler = this.onChangeHandler.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.state = {
-      first_name: "",
-      last_name: "",
-      phone: "",
-      lat: "",
-      lng: "",
-      flat_num: "",
-      locality: "",
-      sector: "",
-      block: "",
-      city: "",
-      postal_code: "",
-      state: "",
-      country: "",
-    };
+  state={
+    first_name: "" || this.props.data.first_name,
+    // last_name: "" || this.props.data.last_name,
+    // email_id:""||this.props.data.email_id,
+    // phone: "" || this.props.data.phone,
+    // lat: ""|| this.props.data.address.geo.lat,
+    // lng: ""||this.props.data.address.geo.lng,
+    // flat_num: ""|| this.props.data.address.flat_num,
+    // locality: ""|| this.props.data.address.locality,
+    // sector: ""|| this.props.data.address.sector,
+    // block: ""|| this.props.data.address.block,
+    // city: ""|| this.props.data.address.city,
+    // postal_code:"" || this.props.data.address.postal_code,
+    // state: ""|| this.props.data.address.state,
+    // country: ""|| this.props.data.address.country,
+    // status:""||this.props.data.status,
+    data:this.props.data,
+    title: this.props.title
   }
-  onChangeHandler(e) {
+  componentDidMount(){
+    this.setState({
+
+    })
+  }
+  
+  
+
+  onChangeHandler = (e) => {
     const value = e.target.value;
     this.setState({
       [e.target.name]: value,
     });
   }
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
     const data = this.state;
     let address = {
@@ -49,33 +55,21 @@ export default class AddUserForm extends Component {
       country: data.country,
     };
     const newUser = {
-      address:address,
+      address: address,
       first_name: data.first_name,
       last_name: data.last_name,
       email_id: data.email_id,
       phone: data.phone,
-      status:data.status
+      status: data.status
     };
     console.log(newUser);
     addClient(newUser);
 
     window.location.href = "/users-dashboard";
   }
-  componentDidMount() {
-    const self = this;
-    $(document).ready(function () {
-      if (self.props.addState) {
-        var client_name = $("#clnt_name");
-        $("#sbmtBtn").click(function () {
-          $("#myForm").submit();
-          // addClient(newClient)
-          console.log(client_name);
-        });
-      }
-    });
-    // document.querySelector("form").addEventListener("submit", this.onSubmit);
-  }
+
   render() {
+    console.log(this.state.data.first_name);
     return (
       <div className="contact-content">
         <div
@@ -89,7 +83,7 @@ export default class AddUserForm extends Component {
                 style={{ backgroundColor: "#fff", marginTop: -10 }}
               >
                 <div className="col-sm mg-t-10 mg-sm-t-10 mg-b-10">
-                  <h5 className="tx mg-t-5">Add User</h5>
+                  <h5 className="tx mg-t-5">{this.state.title}</h5>
                 </div>
                 <div className="col-sm mg-t-10 mg-sm-t-10 mg-b-10">
                   {" "}
@@ -108,7 +102,7 @@ export default class AddUserForm extends Component {
                       className="btn btn-sm  btn-icon btn-primary px-4 mx-1"
                       style={{ zIndex: 1000 }}
                     >
-                      Add
+                      {this.props.btnTitle}
                     </button>
                   </div>
                 </div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import $ from "jquery";
 import { NavLink as Link } from "react-router-dom";
 import {
   MdBubbleChart,
@@ -63,7 +62,7 @@ export default class SideNav extends Component {
                   &nbsp;Users
                 </span>
               </p>
-              <div class="collapse-content py-0">
+              <div className="collapse-content py-0">
                 <Link
                   to="/users-dashboard"
                   id="userDashboard"
@@ -82,6 +81,17 @@ export default class SideNav extends Component {
                   {" "}
                   Add Users
                 </Link>
+                <Link
+                  to="/view-user"
+                  id="addUser"
+                  className="nav-link mg-t-0 mt-0 mg-b-0"
+                  style={{height:'auto'}}
+                >
+                  {" "}
+                  View Users
+                </Link>
+              
+              
                 <Link
                   to="/edit-user"
                   id="editUser"
@@ -109,7 +119,7 @@ export default class SideNav extends Component {
                   &nbsp;Restaurants
                 </span>
               </p>
-              <div class="collapse-content">
+              <div className="collapse-content">
                 <Link
                   to="/restaurant-dashboard"
                   id="dashRestaurant"
@@ -153,7 +163,7 @@ export default class SideNav extends Component {
                   &nbsp;Orders
                 </span>
               </p>
-              <div class="collapse-content">
+              <div className="collapse-content">
                 <Link
                   to="/view-all"
                   id="viewOrders"
@@ -208,7 +218,7 @@ export default class SideNav extends Component {
                   &nbsp;Invoice
                 </span>
               </p>
-              <div class="collapse-content">
+              <div className="collapse-content">
                 <Link
                   to="/invoice-view"
                   id="viewInvoice"
@@ -245,7 +255,7 @@ export default class SideNav extends Component {
                   &nbsp;Coupons
                 </span>
               </p>
-              <div class="collapse-content">
+              <div className="collapse-content">
                 <Link
                   to="/restaurant-dashboard"
                   id="dashRestaurant"
@@ -272,7 +282,7 @@ export default class SideNav extends Component {
                   &nbsp;Cancellations
                 </span>
               </p>
-              <div class="collapse-content">
+              <div className="collapse-content">
                 <Link
                   to="/restaurant-dashboard"
                   id="dashRestaurant"
@@ -299,7 +309,7 @@ export default class SideNav extends Component {
                   Site Earnings
                 </span>
               </p>
-              <div class="collapse-content">
+              <div className="collapse-content">
                 <Link
                   to="/restaurant-dashboard"
                   id="dashRestaurant"
@@ -326,7 +336,7 @@ export default class SideNav extends Component {
                   &nbsp;Payments
                 </span>
               </p>
-              <div class="collapse-content">
+              <div className="collapse-content">
                 <Link
                   to="/restaurant-dashboard"
                   id="dashRestaurant"

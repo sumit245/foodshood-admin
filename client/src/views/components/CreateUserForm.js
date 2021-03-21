@@ -4,8 +4,9 @@ import $ from "jquery";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
 import { Switch } from "@material-ui/core";
+import { Link } from 'react-router-dom'
 
-const  state = {
+const state = {
   staffData: [
     {
       staff_name: "sumit",
@@ -17,7 +18,7 @@ const  state = {
   isOpen: false,
 };
 export default class CreateUserForm extends Component {
- 
+
   deletestaff() {
     axios
       .delete("/api/staff/" + this.state.delete_id)
@@ -75,7 +76,6 @@ export default class CreateUserForm extends Component {
   };
 
   render() {
-    const isOpen = state.isOpen;
     return (
       <div className="contact-content p-3 ml-n5">
         <div className="table-title">
@@ -93,19 +93,19 @@ export default class CreateUserForm extends Component {
               >
                 <span>Delete</span>
               </button>
-              <a
-                href="#addEmployeeModal"
+              <Link
+                to="#addEmployeeModal"
                 className="btn btn-sm  btn-icon btn-primary px-4 mx-1"
                 data-toggle="modal"
               >
                 <span>Add</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="table-responsive card">
           <table className="table table-hover">
-            <thead style={{backgroundColor:"#f5f6fa",fontWeight:"bold"}} >
+            <thead style={{ backgroundColor: "#f5f6fa", fontWeight: "bold" }} >
               <tr>
                 <th>
                   <span className="mx-n3 px-0 custom-checkbox">
@@ -142,7 +142,7 @@ export default class CreateUserForm extends Component {
                     <td>{data.email_id}</td>
                     <td>{data.email_id}</td>
                     <td>
-                      <a href="#editEmployeeModal" data-toggle="modal">
+                      <Link to="#editEmployeeModal" data-toggle="modal">
                         <Edit
                           size={16}
                           data-toggle="tooltip"
@@ -151,8 +151,8 @@ export default class CreateUserForm extends Component {
                             this.edtStaff(data._id);
                           }}
                         />
-                      </a>
-                      <a href="#deleteEmployeeModal" data-toggle="modal">
+                      </Link>
+                      <Link to="#deleteEmployeeModal" data-toggle="modal">
                         <Trash
                           size={16}
                           className="tx-danger"
@@ -162,16 +162,16 @@ export default class CreateUserForm extends Component {
                           }}
                           title="Delete"
                         />
-                      </a>
-                      <a href="#deleteEmployeeModal" data-toggle="modal">
+                      </Link>
+                      <Link to="#deleteEmployeeModal" data-toggle="modal">
                         <Switch
                           size="small"
                           color="primary"
                           data-toggle="tooltip"
                           title="Active"
                         />
-                      </a>
-                    
+                      </Link>
+
                     </td>
                   </tr>
                 );
@@ -181,7 +181,7 @@ export default class CreateUserForm extends Component {
         </div>
         <DeleteModal />
         <AddModal />
-        <EditModal/>
+        <EditModal />
       </div>
     );
   }
@@ -216,24 +216,24 @@ class DeleteModal extends Component {
           </Modal.Body>
           <Modal.Footer className="modal-footer">
             <div className="row">
-                <div className="col-md-6">
-            <input
-              type="button"
-              onClick={this.hideModal}
-              className="btn btn-white"
-              data-dismiss="modal"
-              defaultValue="Cancel"
-            />
-            </div>
-            <div className="col-md-6">
-            <input
-              type="submit"
-              value="Delete"
-              className="btn btn-danger"
-              defaultValue="Delete"
-              onClick={this.deletestaff}
-            />
-            </div>
+              <div className="col-md-6">
+                <input
+                  type="button"
+                  onClick={this.hideModal}
+                  className="btn btn-white"
+                  data-dismiss="modal"
+                  defaultValue="Cancel"
+                />
+              </div>
+              <div className="col-md-6">
+                <input
+                  type="submit"
+                  value="Delete"
+                  className="btn btn-danger"
+                  defaultValue="Delete"
+                  onClick={this.deletestaff}
+                />
+              </div>
             </div>
           </Modal.Footer>
         </Modal>
@@ -275,7 +275,7 @@ class AddModal extends Component {
                   type="text"
                   className="form-control"
                   value={state.staffName}
-                  // onChange={onStaffNameChanged}
+                // onChange={onStaffNameChanged}
                 />
               </div>
               <div className="row">
@@ -296,7 +296,7 @@ class AddModal extends Component {
                       type="email"
                       className="form-control"
                       value={state.staffEmail}
-                      
+
                     />
                   </div>
                 </div>
@@ -359,123 +359,123 @@ class AddModal extends Component {
   }
 }
 
-class EditModal extends Component{
-      hideModal = () => {
-        this.setState({ isOpen: false });
-      };
-      render() {
-        const isOpen = state.isOpen;
-        return (
-          <>
-            <Modal
-              id="addEmployeeModal"
-              show={isOpen}
-              onHide={this.hideModal}
-              className="modal fade"
-            >
-              <form>
-                <Modal.Header className="modal-header">
-                  <h4 className="modal-title">Edit Users</h4>
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-hidden="true"
-                  >
-                    ×
+class EditModal extends Component {
+  hideModal = () => {
+    this.setState({ isOpen: false });
+  };
+  render() {
+    const isOpen = state.isOpen;
+    return (
+      <>
+        <Modal
+          id="addEmployeeModal"
+          show={isOpen}
+          onHide={this.hideModal}
+          className="modal fade"
+        >
+          <form>
+            <Modal.Header className="modal-header">
+              <h4 className="modal-title">Edit Users</h4>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >
+                ×
                   </button>
-                </Modal.Header>
-                <Modal.Body className="modal-body">
+            </Modal.Header>
+            <Modal.Body className="modal-body">
+              <div className="form-group">
+                <label>Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={state.staffName}
+
+                />
+              </div>
+              <div className="row">
+                <div className="col-md-6">
                   <div className="form-group">
-                    <label>Name</label>
+                    <label>Mobile</label>
                     <input
-                      type="text"
+                      type="phone"
                       className="form-control"
-                      value={state.staffName}
-                      
+                      value={state.staffMob}
+
                     />
                   </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label>Mobile</label>
-                        <input
-                          type="phone"
-                          className="form-control"
-                          value={state.staffMob}
-                          
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label>Email</label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          value={state.staffEmail}
-                          
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label>Password</label>
-                        <input
-                          type="password"
-                          className="form-control"
-                          value={state.staffMob}
-                          
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label>Role</label>
-                        <select class="custom-select">
-                          <option selected>Select a Role</option>
-                          <option value="1">Admin</option>
-                          <option value="2">Accountant</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+                <div className="col-md-6">
                   <div className="form-group">
-                    <label>Address</label>
-                    <textarea
+                    <label>Email</label>
+                    <input
+                      type="email"
                       className="form-control"
-                      value={state.staffAdd}
-                      
+                      value={state.staffEmail}
+
                     />
                   </div>
-                </Modal.Body>
-                <Modal.Footer className="modal-footer">
-                  <div className="row row-sm">
-                    <div className="col-md-6">
-                      <input
-                        type="button"
-                        className="btn btn-white"
-                        data-dismiss="modal"
-                        defaultValue="Cancel"
-                      />
-                    </div>
-                    <div className="col-md-6">
-                      <input
-                        type="submit"
-                        value="Save"
-                        className="btn btn-primary"
-                        defaultValue="Add"
-                        onClick={this.addStaff}
-                      />
-                    </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      value={state.staffMob}
+
+                    />
                   </div>
-                </Modal.Footer>
-              </form>
-            </Modal>
-          </>
-        );
-      }
-    
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>Role</label>
+                    <select class="custom-select">
+                      <option selected>Select a Role</option>
+                      <option value="1">Admin</option>
+                      <option value="2">Accountant</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Address</label>
+                <textarea
+                  className="form-control"
+                  value={state.staffAdd}
+
+                />
+              </div>
+            </Modal.Body>
+            <Modal.Footer className="modal-footer">
+              <div className="row row-sm">
+                <div className="col-md-6">
+                  <input
+                    type="button"
+                    className="btn btn-white"
+                    data-dismiss="modal"
+                    defaultValue="Cancel"
+                  />
+                </div>
+                <div className="col-md-6">
+                  <input
+                    type="submit"
+                    value="Save"
+                    className="btn btn-primary"
+                    defaultValue="Add"
+                    onClick={this.addStaff}
+                  />
+                </div>
+              </div>
+            </Modal.Footer>
+          </form>
+        </Modal>
+      </>
+    );
+  }
+
 }
