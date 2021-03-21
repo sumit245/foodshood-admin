@@ -7,30 +7,28 @@ import TopNav from "../components/TopNav";
 
 export default class EditUserPage extends Component {
   state = {
-    userdata: []
+    userdata: [],
+    isupdate:false
   }
-  constructor(props) {
-    super(props);
+
+  componentDidMount() {
     let url = window.location.href;
     const idofclient = url.split('id=')[1];
-    axios.get('/api/users/'+idofclient).then(res=>{
-      this.setState({userdata:res.data})
-    }).catch(err=>console.error(err))
-  }
-  
-  componentDidMount() {
+    axios.get('/api/users/' + idofclient).then(res => {
+      this.setState({ userdata: res.data,isupdate:true })
+    }).catch(err => console.error(err))
 
-    
   }
 
   render() {
-    console.log(this.state.userdata);
+    const isupdate=this.state.isupdate
     return (
       <>
         <TopNav />
         <div className="contact-wrapper">
           <SideNav />
-          <AddUserForm data={this.state.userdata} title="Edit User" btnTitle="Add" isLoaded={true} />
+          {isupdate?<AddUserForm data={this.state.userdata} title="Edit User" btnTitle="Save" isLoaded={true} />:<div className="progressbar"/> }
+          
         </div>
       </>
     )

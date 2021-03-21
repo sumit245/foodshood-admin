@@ -1,35 +1,42 @@
 import React, { Component } from "react";
 import "jquery";
 import "../../assets/css/dashforge.css";
-import { addClient } from "../../controllers/ClientController";
+import { addClient, updateClient } from "../../controllers/ClientController";
 
 export default class AddUserForm extends Component {
-  state={
-    first_name: "" || this.props.data.first_name,
-    // last_name: "" || this.props.data.last_name,
-    // email_id:""||this.props.data.email_id,
-    // phone: "" || this.props.data.phone,
-    // lat: ""|| this.props.data.address.geo.lat,
-    // lng: ""||this.props.data.address.geo.lng,
-    // flat_num: ""|| this.props.data.address.flat_num,
-    // locality: ""|| this.props.data.address.locality,
-    // sector: ""|| this.props.data.address.sector,
-    // block: ""|| this.props.data.address.block,
-    // city: ""|| this.props.data.address.city,
-    // postal_code:"" || this.props.data.address.postal_code,
-    // state: ""|| this.props.data.address.state,
-    // country: ""|| this.props.data.address.country,
-    // status:""||this.props.data.status,
-    data:this.props.data,
-    title: this.props.title
-  }
-  componentDidMount(){
-    this.setState({
+  state = {}
 
-    })
+  componentDidMount() {
+    if (this.props.title === "Edit User") {
+      this.setState({
+        ...this.props.data,
+        flat_num: this.props.data.address.flat_num,
+        locality: this.props.data.address.locality,
+        city: this.props.data.address.city,
+        state: this.props.data.address.state,
+        postal_code: this.props.data.address.postal_code,
+        country: this.props.data.address.country,
+        lat: this.props.data.address.geo.lat,
+        lng: this.props.data.address.geo.lng
+      })
+    }
+    else if(this.props.title === "View User" ){
+      this.setState({
+        ...this.props.data,
+        flat_num: this.props.data.address.flat_num,
+        locality: this.props.data.address.locality,
+        city: this.props.data.address.city,
+        state: this.props.data.address.state,
+        postal_code: this.props.data.address.postal_code,
+        country: this.props.data.address.country,
+        lat: this.props.data.address.geo.lat,
+        lng: this.props.data.address.geo.lng
+      })
+
+    }
   }
-  
-  
+
+
 
   onChangeHandler = (e) => {
     const value = e.target.value;
@@ -63,13 +70,24 @@ export default class AddUserForm extends Component {
       status: data.status
     };
     console.log(newUser);
-    addClient(newUser);
+    if(this.props.title==="Add User"){
+      addClient(newUser);
+      window.location.href = "/users-dashboard";
+    }
+    else if(this.props.title==="Edit User"){
+      updateClient(this.props.data._id,newUser)
+      window.location.href="/users-dashboard"
+    }
+    else if(this.props.btnTitle==="Back"){
+      window.location.href="/users-dashboard"
 
-    window.location.href = "/users-dashboard";
+    }
+    
+
+    
   }
 
   render() {
-    console.log(this.state.data.first_name);
     return (
       <div className="contact-content">
         <div
@@ -83,7 +101,7 @@ export default class AddUserForm extends Component {
                 style={{ backgroundColor: "#fff", marginTop: -10 }}
               >
                 <div className="col-sm mg-t-10 mg-sm-t-10 mg-b-10">
-                  <h5 className="tx mg-t-5">{this.state.title}</h5>
+                  <h5 className="tx mg-t-5">{this.props.title}</h5>
                 </div>
                 <div className="col-sm mg-t-10 mg-sm-t-10 mg-b-10">
                   {" "}
@@ -120,7 +138,7 @@ export default class AddUserForm extends Component {
                     <input
                       onChange={this.onChangeHandler}
                       name="first_name"
-                      value={this.state.first_name}
+                      value={this.state.first_name || this.props.first_name}
                     />
                   </p>
                 </div>

@@ -5,7 +5,6 @@ import DummyTable from "../components/DummyTable";
 import { getClients } from "../../controllers/ClientController";
 import ErrorBoundary from "../components/ErrorBoundary";
 import AddUserForm from "../components/AddUserForm";
-import $ from "jquery";
 import {
   Users,
 } from "react-feather";
@@ -20,6 +19,8 @@ export default class HomeScreeen extends Component {
       err: null,
       isLoaded: false,
       ClientData: [],
+      active:[],
+      inactive:[],
       addState: false,
       name: "",
     };
@@ -28,32 +29,24 @@ export default class HomeScreeen extends Component {
     this.setState({ addState: true });
   }
   componentDidMount() {
-    $("#drpmoreadd").hover(
-      function () {
-        $("#drpmoreadd").css("color", "white");
-        // over
-      },
-      function () {
-        $("#drpmoreadd").css("color", "#777");
-        // out
-      }
-    );
-
-    Clt.then((data) => data)
-      .then(
-        (json) => {
-          this.setState({ isLoaded: true, ClientData: json });
-        },
-        (err) => {
-          this.setState({ isLoaded: true, err });
-        }
-      )
+    Clt.then((data) => {
+      let active=data.filter(function (e){
+        return e.status==='Active'
+      })
+      let inactive=data.filter(function (e){
+        return e.status==='Inactive'
+      })
+      
+      this.setState({ isLoaded: true, ClientData: data,active:active,inactive:inactive })
+  
+  })
       .catch((err) => {
         console.log(err);
       });
+
   }
   render() {
-    const { err, ClientData, addState } = this.state;
+    const { err, ClientData, addState,active,inactive } = this.state;
     if (err) {
       return <div className="contact-wrapper">Error:{err.message}</div>;
     } else {
@@ -86,7 +79,7 @@ export default class HomeScreeen extends Component {
                           All Users
                         </h6>
                         <h6 className="tx-40 tx-spacing-1 tx-white tx-semibold mg-b-5">
-                          10
+                          {ClientData.length}
                         </h6>
                       </div>
                       <div className="col-sm-4 mt-n3">
@@ -112,7 +105,7 @@ export default class HomeScreeen extends Component {
                           Active Users
                         </h6>
                         <h6 className="tx-40 tx-spacing-1 tx-white tx-semibold mg-b-5">
-                          400
+                          {active.length}
                         </h6>
                       </div>
                       <div className="col-sm-4">
@@ -136,7 +129,7 @@ export default class HomeScreeen extends Component {
                           Inactive Users
                         </h6>
                         <h2 className="tx-40 tx-spacing-1 tx-white tx-semibold mg-b-5">
-                          10
+                          {inactive.length}
                         </h2>
                       </div>
                       <div className="col-sm-4 mt-n3">

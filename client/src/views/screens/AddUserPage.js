@@ -10,7 +10,7 @@ export default class AddUserPage extends Component {
         <TopNav />
         <div className="contact-wrapper">
           <SideNav />
-          <AddUserForm />
+          <AddUserForm title="Add User" btnTitle="Add" />
         </div>
       </>
     );

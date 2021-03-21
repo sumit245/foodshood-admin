@@ -31,7 +31,6 @@ export default class SideNav extends Component {
   render() {
     return (
       <>
-        {/* <div className="contact-wrapper"> */}
         <div className="contact-navleft" style={{ width: 155 }}>
           <nav className="nav">
             <div>
@@ -139,6 +138,12 @@ export default class SideNav extends Component {
                   className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
                   style={{height:'auto',textAlign:'left'}}
                 >Unapproved</Link>
+                <Link
+                  to="/edit-restaurant"
+                  id="editRestaurant"
+                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
+                  style={{height:'auto',textAlign:'left'}}
+                >Edit Restaurant</Link>
                 <Link
                   to="/restaurant-add"
                   id="addRestaurant"
