@@ -27,18 +27,18 @@ app.use("/api/tasks",tasks)
 app.use("/api/users", users);
 app.use("/api/restaurantlogin", restaurantlogin);
 
-// app.use(express.static(path.join(__dirname, './build')))
-// app.get("*", (req, res) => {
-//   let url = path.join(__dirname, './build', 'index.html');
-//   if (!url.startsWith('/app/')) // since we're on local windows
-//     url = url.substring(1);
-//   res.sendFile(url);
-// });
+app.use(express.static(path.join(__dirname, './build')))
+app.get("/*", (req, res) => {
+  let url = path.join(__dirname, './build','index.html');
+   if (!url.startsWith('/app/')) // since we're on local windows
+    url = url.substring(1);
+  res.sendFile('index.html',{root:path.join(__dirname,'build')});
+});
 
 if(process.env.NODE_ENV=='production'){
-  app.use(express.static(path.join(__dirname, "./build")));
+  app.use(express.static(path.join(__dirname, "./build/")));
   app.get("/**", (req, res) => {
-    res.sendFile(path.join(__dirname, "./build"));
+    res.sendFile(path.join(__dirname, "./build/"));
   });
 }
 
