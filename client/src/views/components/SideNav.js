@@ -80,26 +80,6 @@ export default class SideNav extends Component {
                   {" "}
                   Add Users
                 </Link>
-                <Link
-                  to="/view-user"
-                  id="addUser"
-                  className="nav-link mg-t-0 mt-0 mg-b-0"
-                  style={{height:'auto'}}
-                >
-                  {" "}
-                  View Users
-                </Link>
-              
-              
-                <Link
-                  to="/edit-user"
-                  id="editUser"
-                  className="nav-link mg-t-0 mt-0 mg-b-0"
-                  style={{height:'auto'}}
-                >
-                  {" "}
-                  Edit Users
-                </Link>
               </div>
             </div>
             {/* User */}
