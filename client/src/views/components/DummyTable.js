@@ -3,19 +3,14 @@ import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "datatables.net-buttons-dt";
-// import "datatables.net-buttons/js/buttons.html5.js";
 import "datatables.net-buttons-dt/css/buttons.dataTables.css";
 import "../../assets/css/dashforge.contacts.css";
-// import { arrayFindObjectByProp } from "../../helper/arrayFindObjectByProp";
-import * as jzip from "jszip";
-import "pdfmake";
 import $ from "jquery";
 import { deleteClient, getClients } from "../../controllers/ClientController";
 import { Edit3, Eye, Trash2 } from "react-feather";
 import { Modal, Button } from "react-bootstrap";
 
 
-window.JSZip = jzip;
 const Clt = getClients();
 export default class DummyTable extends Component {
   constructor(props) {
@@ -38,12 +33,20 @@ export default class DummyTable extends Component {
           this.setState({ isLoaded: true, tableData: json });
         })
       .then((json) => {
-        $("#clientResponsive").DataTable({
+       var table= $("#clientResponsive").DataTable({
           paging: true,
           dom: "Bfrtip",
           responsive: true,
           buttons: [],
-        });
+       });
+        table.columns().every(function () {
+          var column = this;
+          $('input', this.footer()).on('keyup change', function () {
+            column
+              .search(this.value)
+              .draw();
+          });
+        })
       })
       .catch((err) => {
         console.log(err);

@@ -83,7 +83,7 @@ export default class HomeScreeen extends Component {
                         </h6>
                       </div>
                       <div className="col-sm-4 mt-n3">
-                        <Users size={40}  />
+                        <Users size={40} color="#FFF"  />
                       </div>
                     </div>
                     
@@ -109,7 +109,7 @@ export default class HomeScreeen extends Component {
                         </h6>
                       </div>
                       <div className="col-sm-4">
-                        <Users size={40} />
+                        <Users size={40} color="#FFF" />
                       </div>
                     </div>
                   </div>

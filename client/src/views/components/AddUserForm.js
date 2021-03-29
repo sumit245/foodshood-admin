@@ -108,7 +108,7 @@ export default class AddUserForm extends Component {
                   <div className="d-flex px-5 justify-content-end">
                     <button
                       onClick={() => {
-                        window.location.href = "/Home";
+                        window.location.href = "/users-dashboard";
                       }}
                       className="btn btn-sm btn-white mr-2"
                       style={{ zIndex: 1000 }}
@@ -283,12 +283,12 @@ export default class AddUserForm extends Component {
                   <label className="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
                     Status
                   </label>
+                  
                   <p className="mg-b-0">
-                    <input
-                      onChange={this.onChangeHandler}
-                      name="status"
-                      value={this.state.status}
-                    />
+                    <select className="col-10 col-sm-8" onChange={this.onChangeHandler} name="status" value={this.state.status}>
+                      <option name="Active" value="Active" >Active</option>
+                      <option name="Inactive" value="Inactive">Inactive</option>
+                    </select>
                   </p>
                 </div>
               </div>

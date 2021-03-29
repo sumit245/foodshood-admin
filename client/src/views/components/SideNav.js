@@ -107,23 +107,11 @@ export default class SideNav extends Component {
                 >Dashboard
                 </Link>
                 <Link
-                  to="/restaurant-list"
-                  id="listRestaurant"
-                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
-                >View</Link>
-                <Link
                   to="/restaurant-unapproved"
                   id="unapprovedRestaurant"
                   className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
                   style={{height:'auto',textAlign:'left'}}
                 >Unapproved</Link>
-                <Link
-                  to="/edit-restaurant"
-                  id="editRestaurant"
-                  className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
-                >Edit Restaurant</Link>
                 <Link
                   to="/restaurant-add"
                   id="addRestaurant"
