@@ -139,6 +139,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="first_name"
                       value={this.state.first_name || this.props.first_name}
+                      required
                     />
                   </p>
                 </div>
@@ -151,6 +152,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="last_name"
                       value={this.state.last_name}
+                      required
                     />
                   </p>
                 </div>
@@ -163,6 +165,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="email_id"
                       value={this.state.email_id}
+                      required
                     />
                   </p>
                 </div>
@@ -175,6 +178,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="phone"
                       value={this.state.phone}
+                      required
                     />
                   </p>
                 </div>
@@ -187,6 +191,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="lat"
                       value={this.state.lat}
+                      required
                     />
                   </p>
                 </div>
@@ -199,6 +204,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="lng"
                       value={this.state.lng}
+                      required
                     />
                   </p>
                 </div>
@@ -214,6 +220,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="flat_num"
                       value={this.state.flat_num}
+                      required
                     />
                   </p>
                 </div>
@@ -226,6 +233,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="locality"
                       value={this.state.locality}
+                      required
                     />
                   </p>
                 </div>
@@ -238,6 +246,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="city"
                       value={this.state.city}
+                      required
                     />
                   </p>
                 </div>
@@ -250,6 +259,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="state"
                       value={this.state.state}
+                      required
                     />
                   </p>
                 </div>
