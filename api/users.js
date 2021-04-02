@@ -47,7 +47,7 @@ router.route("/:id").post(function (req, res) {
         (user.last_name = req.body.last_name),
         (user.phone = req.body.phone),
         (user.address = req.body.address),
-        (user.gst_num = req.body.gst_num),
+        (user.email_id = req.body.email_id)
         (user.status= req.body.status)
         user
           .save()

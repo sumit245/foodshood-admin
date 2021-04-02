@@ -56,6 +56,6 @@ export const updateClient=(idofclient,newClient)=>{
   axios.post('/api/users/'+idofclient,newClient).then((res)=>{
     console.log(res.data)
   }).catch((err)=>{
-    console.log(err)
+    console.log('Failed at this point')
   })
 }

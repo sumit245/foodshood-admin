@@ -39,6 +39,9 @@ let Users = new Schema({
     state:{
         type:String
     },
+    country: {
+      type:String
+    },
     postal_code:{
       type:String
     },
@@ -46,9 +49,6 @@ let Users = new Schema({
       lat:{type: String},
       lng:{type: String}
     }
-  },
-  gst_num: {
-    type: String,
   },
   status: {
     type: String,

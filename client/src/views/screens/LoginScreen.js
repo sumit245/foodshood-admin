@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import food from '../../assets/img/food.jpg'
-import img18 from '../../assets/img/img18.png'
+import img18 from '../../assets/img/img18.jpg'
 
 export default class LoginScreen extends Component {
   state = { username: "", password: "" }

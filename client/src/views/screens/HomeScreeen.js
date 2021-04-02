@@ -47,6 +47,7 @@ export default class HomeScreeen extends Component {
   }
   render() {
     const { err, ClientData, addState,active,inactive } = this.state;
+    console.log(active.length);
     if (err) {
       return <div className="contact-wrapper">Error:{err.message}</div>;
     } else {

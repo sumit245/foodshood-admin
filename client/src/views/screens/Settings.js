@@ -4,11 +4,13 @@ import SideNav from "../components/SideNav";
 import "../../assets/css/dashforge.demo.css";
 import ViewProfile from "../components/ViewProfile";
 import { MdSettings } from "react-icons/md";
-import { User, Users } from "react-feather";
+import { Disc, DollarSign, User, Users } from "react-feather";
 import CreateUserForm from "../components/CreateUserForm";
 import $ from "jquery";
 import CompanySetup from "../components/CompanySetup";
 import Smssetup from "../components/Smssetup";
+import ProfitMargin from '../components/ProfitMargin'
+import Cuisine from '../components/Cuisine'
 import { Link } from 'react-router-dom'
 
 export default class Settings extends Component {
@@ -16,7 +18,6 @@ export default class Settings extends Component {
     url: "settingProfile",
   };
   handleChange = (param) => {
-    console.log(param);
     switch (param) {
       case "profile":
         this.setState({ url: "settingProfile" });
@@ -24,6 +25,8 @@ export default class Settings extends Component {
         $("#company").removeClass("active");
         $("#users").removeClass("active");
         $("#sms").removeClass("active");
+        $("#profit").removeClass("active");
+        $("#cuisine").addClass("active");
 
         break;
       case "company":
@@ -32,12 +35,16 @@ export default class Settings extends Component {
         $("#profile").removeClass("active");
         $("#users").removeClass("active");
         $("#sms").removeClass("active");
+        $("#profit").removeClass("active");
+        $("#cuisine").removeClass("active");
         break;
       case "users":
         this.setState({ url: "settingUsers" });
         $("#users").addClass("active");
         $("#profile").removeClass("active");
         $("#company").removeClass("active");
+        $("#profit").removeClass("active");
+        $("#cuisine").removeClass("active");
         $("#sms").removeClass("active");
         break;
       case "sms":
@@ -45,7 +52,27 @@ export default class Settings extends Component {
         $("#users").removeClass("active");
         $("#profile").removeClass("active");
         $("#company").removeClass("active");
+        $("#profit").removeClass("active");
+        $("#cuisine").removeClass("active");
         $("#sms").addClass("active");
+        break;
+      case "profit":
+        this.setState({ url: "profit" });
+        $("#users").removeClass("active");
+        $("#profile").removeClass("active");
+        $("#company").removeClass("active");
+        $("#sms").removeClass("active");
+        $("#cuisine").removeClass("active");
+        $("#profit").addClass("active");
+        break;
+      case "cuisine":
+        this.setState({ url: "cuisine" });
+        $("#users").removeClass("active");
+        $("#profile").removeClass("active");
+        $("#company").removeClass("active");
+        $("#profit").removeClass("active");
+        $("#sms").removeClass("active");
+        $("#cuisine").addClass("active");
         break;
       default:
         break;
@@ -107,6 +134,7 @@ export default class Settings extends Component {
                           Users Settings
                         </Link>
                       </li>
+
                       <li
                         className="nav-item"
                         onClick={() => this.handleChange("company")}
@@ -135,19 +163,37 @@ export default class Settings extends Component {
                       </li>
                       <li
                         className="nav-item"
+                        onClick={() => this.handleChange("profit")}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <Link className="nav-link" id="profit">
+                          <DollarSign />
+                          Profit Margin
+                        </Link>
+                      </li>
+                      <li
+                        className="nav-item"
+                        onClick={() => this.handleChange("cuisine")}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <Link className="nav-link" id="cuisine">
+                          <Disc />
+                          Cuisines
+                        </Link>
+                      </li>
+                      <li
+                        className="nav-item"
                         onClick={() => this.handleChange("sms")}
                         style={{ cursor: "pointer" }}
                       >
-                        <Link className="nav-link" id="users">
-
-                          SMS config
+                        <Link className="nav-link" id="users">SMS config
                         </Link>
                       </li>
                     </ul>
                   </ul>
                 </div>
               </div>
-              {url === "settingProfile" ? <ViewProfile /> : url === 'settingCompany' ? <CompanySetup /> : url === "settingSMS" ? <Smssetup /> : <CreateUserForm />}
+              {url === "settingProfile" ? <ViewProfile /> : url === 'settingCompany' ? <CompanySetup /> : url === "settingSMS" ? <Smssetup /> : url === "profit" ? <ProfitMargin /> : url === "cuisine" ? <Cuisine /> : <CreateUserForm />}
             </div>
             {/* df-example */}
           </div>

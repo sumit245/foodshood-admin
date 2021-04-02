@@ -10,6 +10,8 @@ const staff=require("./api/staffs")
 const subscriptions=require('./api/subscriptions')
 const tasks=require("./api/tasks")
 const users = require("./api/users");
+const plan = require("./api/plan")
+const cuisine = require("./api/cuisine")
 const restaurantlogin = require("./api/restaurantlogin");
 
 
@@ -25,15 +27,10 @@ app.use("/api/staff",staff)
 app.use("/api/subscriptions",subscriptions)
 app.use("/api/tasks",tasks)
 app.use("/api/users", users);
+app.use("/api/plans", plan)
+app.use("/api/cuisine", cuisine)
 app.use("/api/restaurantlogin", restaurantlogin);
 
-// app.use(express.static(path.join(__dirname, './build')))
-// app.get("/*", (req, res) => {
-//   let url = path.join(__dirname, './build','index.html');
-//    if (!url.startsWith('/app/')) // since we're on local windows
-//     url = url.substring(1);
-//   res.sendFile('index.html',{root:path.join(__dirname,'build')});
-// });
 
 if(process.env.NODE_ENV=='production'){
   app.use(express.static(path.join(__dirname, "./build/")));

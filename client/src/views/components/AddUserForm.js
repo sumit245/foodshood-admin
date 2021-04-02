@@ -4,7 +4,7 @@ import "../../assets/css/dashforge.css";
 import { addClient, updateClient } from "../../controllers/ClientController";
 
 export default class AddUserForm extends Component {
-  state = {}
+  state = {visible:true}
 
   componentDidMount() {
     if (this.props.title === "Edit User") {
@@ -20,7 +20,7 @@ export default class AddUserForm extends Component {
         lng: this.props.data.address.geo.lng
       })
     }
-    else if(this.props.title === "View User" ){
+    else if (this.props.title === "View User") {
       this.setState({
         ...this.props.data,
         flat_num: this.props.data.address.flat_num,
@@ -30,7 +30,9 @@ export default class AddUserForm extends Component {
         postal_code: this.props.data.address.postal_code,
         country: this.props.data.address.country,
         lat: this.props.data.address.geo.lat,
-        lng: this.props.data.address.geo.lng
+        lng: this.props.data.address.geo.lng,
+        disabled: true,
+        visible:'hidden'
       })
 
     }
@@ -70,21 +72,21 @@ export default class AddUserForm extends Component {
       status: data.status
     };
     console.log(newUser);
-    if(this.props.title==="Add User"){
+    if (this.props.title === "Add User") {
       addClient(newUser);
       window.location.href = "/users-dashboard";
     }
-    else if(this.props.title==="Edit User"){
-      updateClient(this.props.data._id,newUser)
-      window.location.href="/users-dashboard"
+    else if (this.props.title === "Edit User") {
+      updateClient(this.props.data._id, newUser)
+      window.location.href = "/users-dashboard"
     }
-    else if(this.props.btnTitle==="Back"){
-      window.location.href="/users-dashboard"
+    else if (this.props.btnTitle === "Back") {
+      window.location.href = "/users-dashboard"
 
     }
-    
 
-    
+
+
   }
 
   render() {
@@ -107,17 +109,18 @@ export default class AddUserForm extends Component {
                   {" "}
                   <div className="d-flex px-5 justify-content-end">
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault()
                         window.location.href = "/users-dashboard";
                       }}
                       className="btn btn-sm btn-white mr-2"
-                      style={{ zIndex: 1000 }}
+                      style={{ zIndex: 1000,visibility:this.state.visible }}
                     >
                       Cancel
                     </button>
                     <button
                       onClick={this.onSubmit}
-                      className="btn btn-sm  btn-icon btn-primary px-4 mx-1"
+                      className="btn btn-sm btn-icon btn-primary px-4 mx-1"
                       style={{ zIndex: 1000 }}
                     >
                       {this.props.btnTitle}
@@ -139,7 +142,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="first_name"
                       value={this.state.first_name || this.props.first_name}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -152,7 +155,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="last_name"
                       value={this.state.last_name}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -165,7 +168,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="email_id"
                       value={this.state.email_id}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -178,7 +181,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="phone"
                       value={this.state.phone}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -191,7 +194,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="lat"
                       value={this.state.lat}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -204,7 +207,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="lng"
                       value={this.state.lng}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -220,7 +223,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="flat_num"
                       value={this.state.flat_num}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -233,7 +236,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="locality"
                       value={this.state.locality}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -246,7 +249,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="city"
                       value={this.state.city}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -259,7 +262,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="state"
                       value={this.state.state}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -272,7 +275,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="country"
                       value={this.state.country}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -285,7 +288,7 @@ export default class AddUserForm extends Component {
                       onChange={this.onChangeHandler}
                       name="postal_code"
                       value={this.state.postal_code}
-                      required
+                      disabled={this.state.disabled}
                     />
                   </p>
                 </div>
@@ -293,9 +296,11 @@ export default class AddUserForm extends Component {
                   <label className="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
                     Status
                   </label>
-                  
+
                   <p className="mg-b-0">
-                    <select className="col-10 col-sm-8" onChange={this.onChangeHandler} name="status" value={this.state.status}>
+                    <select className="col-10 col-sm-8" onChange={this.onChangeHandler} name="status" value={this.state.status}
+                      disabled={this.state.disabled}
+                    >
                       <option name="Active" value="Active" >Active</option>
                       <option name="Inactive" value="Inactive">Inactive</option>
                     </select>

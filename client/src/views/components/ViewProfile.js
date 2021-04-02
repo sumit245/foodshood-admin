@@ -194,4 +194,5 @@ export default class ViewProfile extends Component {
       </div>
     );
   }
+    
 }

@@ -10,12 +10,22 @@ import {
 } from "react-feather";
 import { MdRestaurantMenu } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { getClients } from "../../controllers/ClientController";
+import {getRestaurants} from '../../controllers/RestaurantController'
 
+const Clt = getClients();
+const Restaurants = getRestaurants();
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openDrawer: false,
+      users: [],
+      active: [],
+      inactive: [],
+      restaurants: [],
+      activeRestaurants: [],
+      InactiveRestaurants:[],
     };
     this.logOut = this.logOut.bind(this);
   }
@@ -23,7 +33,39 @@ export default class Dashboard extends Component {
   logOut() {
     this.props.LogOutRequest();
   }
+  componentDidMount() {
+    Clt.then((data) => {
+      let active = data.filter(function (e) {
+        return e.status === 'Active'
+      })
+      let inactive = data.filter(function (e) {
+        return e.status === 'Inactive'
+      })
+
+      this.setState({ users: data, active: active, inactive: inactive })
+
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+    Restaurants.then((data) => {
+      let active = data.filter(function (e) {
+        return e.status === 'Active'
+      })
+      let inactive = data.filter(function (e) {
+        return e.status === 'Inactive'
+      })
+
+      this.setState({ restaurants: data, activeRestaurants: active, inactiveRestaurants: inactive })
+
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
   render() {
+    const {users,active,inactive,restaurants,activeRestaurants,inactiveRestaurants}=this.state
     return (
       <>
         <TopNav />
@@ -100,7 +142,7 @@ export default class Dashboard extends Component {
                         User
                       </h6>
                       <h6 className="tx-11 tx-spacing-1 tx-white tx-semibold mg-b-5">
-                        10
+                        {users.length}
                       </h6>
                     </div>
                     <div className="col-sm-4 mt-n3">
@@ -113,7 +155,7 @@ export default class Dashboard extends Component {
                         Active
                       </h6>
                       <p className="tx-11 tx-color-03 mg-b-0">
-                        <span className="tx-medium tx-white">12345</span>
+                        <span className="tx-medium tx-white">{active.length}</span>
                       </p>
                     </div>
                     <div className="col-sm-6">
@@ -121,13 +163,13 @@ export default class Dashboard extends Component {
                         Inactive
                       </h6>
                       <p className="tx-11 tx-color-03 mg-b-0">
-                        <span className="tx-medium tx-white">12345</span>
+                        <span className="tx-medium tx-white">{inactive.length}</span>
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="card card-footer py-0">
-                  <Link className="tx-normal tx-white tx-12 mg-b-0 pb-0 px-4">
+                  <Link className="tx-normal tx-white tx-12 mg-b-0 pb-0 px-4" to="users-dashboard" >
                     <span className="tx-medium tx-white">More info</span>{" "}
                     <ArrowRightCircle size={14} color="white" />{" "}
                   </Link>
@@ -148,7 +190,7 @@ export default class Dashboard extends Component {
                         Restaurants
                       </h6>
                       <h6 className="tx-11 tx-spacing-1 tx-white tx-semibold mg-b-5">
-                        10
+                        {restaurants && restaurants.length}
                       </h6>
                     </div>
                     <div className="col-sm-4 mt-n3">
@@ -161,7 +203,9 @@ export default class Dashboard extends Component {
                         Active
                       </h6>
                       <p className="tx-11 tx-color-03 mg-b-0">
-                        <span className="tx-medium tx-white">12345</span>
+                        <span className="tx-medium tx-white">
+                          {activeRestaurants  && activeRestaurants.length}
+                        </span>
                       </p>
                     </div>
                     <div className="col-sm-6">
@@ -169,13 +213,15 @@ export default class Dashboard extends Component {
                         Inactive
                       </h6>
                       <p className="tx-11 tx-color-03 mg-b-0">
-                        <span className="tx-medium tx-white">12345</span>
+                        <span className="tx-medium tx-white">
+                          {inactiveRestaurants && inactiveRestaurants.length}
+                        </span>
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="card card-footer py-0">
-                  <Link className="tx-normal tx-white tx-12 mg-b-0 pb-0 px-4">
+                  <Link className="tx-normal tx-white tx-12 mg-b-0 pb-0 px-4" to="/restaurant-dashboard" >
                     <span className="tx-medium tx-white">More info</span>{" "}
                     <ArrowRightCircle size={14} color="white" />{" "}
                   </Link>
