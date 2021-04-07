@@ -10,6 +10,7 @@ const subscriptions=require('./api/subscriptions')
 const users = require("./api/users");
 const plan = require("./api/plan")
 const cuisine = require("./api/cuisine")
+const newrest=require('./api/newrestaurant')
 const restaurantlogin = require("./api/restaurantlogin");
 
 
@@ -27,6 +28,7 @@ app.use("/api/subscriptions",subscriptions)
 app.use("/api/users", users);
 app.use("/api/plans", plan)
 app.use("/api/cuisine", cuisine)
+app.use("/api/newrest", newrest)
 app.use("/api/restaurantlogin", restaurantlogin);
 
 if(process.env.NODE_ENV=='production'){
