@@ -52,10 +52,11 @@ export const deleteClient=(idofclient)=>{
   })
 }
 
-export const updateClient=(idofclient,newClient)=>{
+export const updateClient = (idofclient, newClient) => {
+  console.log(idofclient);
   axios.post('/api/users/'+idofclient,newClient).then((res)=>{
     console.log(res.data)
   }).catch((err)=>{
-    console.log('Failed at this point')
+    console.log(err)
   })
 }

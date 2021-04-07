@@ -41,11 +41,13 @@ export default class DummyTable extends Component {
        });
         table.columns().every(function () {
           var column = this;
-          $('input', this.footer()).on('keyup change', function () {
-            column
-              .search(this.value)
-              .draw();
-          });
+          return (
+            $('input', this.footer()).on('keyup change', function () {
+              column
+                .search(this.value)
+                .draw();
+            })
+          )
         })
       })
       .catch((err) => {

@@ -12,6 +12,13 @@ router.route("/").get(function (req, res) {
     });
 });
 
+router.route("/:id").get(function (req, res) {
+    let id = req.params.id;
+    Plan.findById(id, function (err, user) {
+        res.json(user);
+    });
+});
+
 router.route("/").post(function (req, res) {
     let plan = new Plan(req.body);
     plan
@@ -47,5 +54,15 @@ router.route("/:id").post(function (req, res) {
     });
 });
 //update a plan
+router.route("/:id").delete(function (req, res,next) {
+    Plan.findByIdAndDelete(req.params.id, (err, data) => {
+        if (err) {
+            console.log(next(err));
+            res.status(200).json({ data: "deleted" });
+        } else {
+            console.log("deleted_succesfully");
+        }
+    });
+});
 
 module.exports = router;

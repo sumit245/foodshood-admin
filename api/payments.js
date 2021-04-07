@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Payment = require("../models/kingsgate_payments.model");
+const Payment = require("../models/payments.model");
 
 router.route("/").get(function (req, res) {
   Payment.find(function (err, pays) {

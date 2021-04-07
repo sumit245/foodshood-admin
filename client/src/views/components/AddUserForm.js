@@ -4,35 +4,35 @@ import "../../assets/css/dashforge.css";
 import { addClient, updateClient } from "../../controllers/ClientController";
 
 export default class AddUserForm extends Component {
-  state = {visible:true}
+  state = { visible: true }
 
   componentDidMount() {
     if (this.props.title === "Edit User") {
       this.setState({
         ...this.props.data,
-        flat_num: this.props.data.address.flat_num,
-        locality: this.props.data.address.locality,
-        city: this.props.data.address.city,
-        state: this.props.data.address.state,
-        postal_code: this.props.data.address.postal_code,
-        country: this.props.data.address.country,
-        lat: this.props.data.address.geo.lat,
-        lng: this.props.data.address.geo.lng
+        flat_num: this.props.data.address && this.props.data.address.flat_num,
+        locality: this.props.data.address && this.props.data.address.locality,
+        city: this.props.data.address && this.props.data.address.city,
+        state: this.props.data.address && this.props.data.address.state,
+        postal_code: this.props.data.address && this.props.data.address.postal_code,
+        country: this.props.data.address && this.props.data.address.country,
+        lat: this.props.data.address && this.props.data.address.geo.lat,
+        lng: this.props.data.address && this.props.data.address.geo.lng,
       })
     }
     else if (this.props.title === "View User") {
       this.setState({
         ...this.props.data,
-        flat_num: this.props.data.address.flat_num,
-        locality: this.props.data.address.locality,
-        city: this.props.data.address.city,
-        state: this.props.data.address.state,
-        postal_code: this.props.data.address.postal_code,
-        country: this.props.data.address.country,
-        lat: this.props.data.address.geo.lat,
-        lng: this.props.data.address.geo.lng,
+        flat_num: this.props.data.address && this.props.data.address.flat_num,
+        locality: this.props.data.address && this.props.data.address.locality,
+        city: this.props.data.address && this.props.data.address.city,
+        state: this.props.data.address && this.props.data.address.state,
+        postal_code: this.props.data.address && this.props.data.address.postal_code,
+        country: this.props.data.address && this.props.data.address.country,
+        lat: this.props.data.address && this.props.data.address.geo.lat,
+        lng: this.props.data.address && this.props.data.address.geo.lng,
         disabled: true,
-        visible:'hidden'
+        visible: 'hidden'
       })
 
     }
@@ -114,7 +114,7 @@ export default class AddUserForm extends Component {
                         window.location.href = "/users-dashboard";
                       }}
                       className="btn btn-sm btn-white mr-2"
-                      style={{ zIndex: 1000,visibility:this.state.visible }}
+                      style={{ zIndex: 1000, visibility: this.state.visible }}
                     >
                       Cancel
                     </button>

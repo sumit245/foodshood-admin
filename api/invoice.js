@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Invoice = require("../models/invoicemodel");
+const Invoice = require("../models/invoice.model");
 
 router.route("/").get(function (req, res) {
   Invoice.find(function (err, invoice) {

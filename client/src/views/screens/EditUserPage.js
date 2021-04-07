@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { Component } from 'react'
-import { getClientbyID } from '../../controllers/ClientController';
 import AddUserForm from "../components/AddUserForm";
 import SideNav from "../components/SideNav";
 import TopNav from "../components/TopNav";

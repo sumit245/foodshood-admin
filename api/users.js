@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Users = require("../models/users.model");
 router.route("/").get(function (req, res) {
-    Users.find(function (err, users) {
+  Users.find(function (err, users) {
     if (err) {
       console.log(err);
     } else {
@@ -47,8 +47,8 @@ router.route("/:id").post(function (req, res) {
         (user.last_name = req.body.last_name),
         (user.phone = req.body.phone),
         (user.address = req.body.address),
-        (user.email_id = req.body.email_id)
-        (user.status= req.body.status)
+        (user.email_id = req.body.email_id),
+        (user.status = req.body.status),
         user
           .save()
           .then((user) => {

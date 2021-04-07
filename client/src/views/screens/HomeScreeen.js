@@ -4,7 +4,6 @@ import TopNav from "../components/TopNav";
 import DummyTable from "../components/DummyTable";
 import { getClients } from "../../controllers/ClientController";
 import ErrorBoundary from "../components/ErrorBoundary";
-import AddUserForm from "../components/AddUserForm";
 import {
   Users,
 } from "react-feather";
@@ -14,40 +13,35 @@ const Clt = getClients();
 export default class HomeScreeen extends Component {
   constructor(props) {
     super(props);
-    this.populateAddForm = this.populateAddForm.bind(this);
     this.state = {
       err: null,
-      isLoaded: false,
       ClientData: [],
-      active:[],
-      inactive:[],
-      addState: false,
+      active: [],
+      inactive: [],
       name: "",
     };
   }
-  populateAddForm() {
-    this.setState({ addState: true });
-  }
+
   componentDidMount() {
     Clt.then((data) => {
-      let active=data.filter(function (e){
-        return e.status==='Active'
+      let active = data.filter(function (e) {
+        return e.status === 'Active'
       })
-      let inactive=data.filter(function (e){
-        return e.status==='Inactive'
+      let inactive = data.filter(function (e) {
+        return e.status === 'Inactive'
       })
-      
-      this.setState({ isLoaded: true, ClientData: data,active:active,inactive:inactive })
-  
-  })
+
+      this.setState({ ClientData: data, active: active, inactive: inactive })
+
+    })
       .catch((err) => {
         console.log(err);
       });
 
   }
   render() {
-    const { err, ClientData, addState,active,inactive } = this.state;
-    console.log(active.length);
+    const { err, ClientData, active, inactive } = this.state;
+
     if (err) {
       return <div className="contact-wrapper">Error:{err.message}</div>;
     } else {
@@ -84,12 +78,12 @@ export default class HomeScreeen extends Component {
                         </h6>
                       </div>
                       <div className="col-sm-4 mt-n3">
-                        <Users size={40} color="#FFF"  />
+                        <Users size={40} color="#FFF" />
                       </div>
                     </div>
-                    
+
                   </div>
-                  
+
                 </div>
                 {/* All Users */}
                 <div
@@ -141,13 +135,9 @@ export default class HomeScreeen extends Component {
                 </div>
                 {/* Inactive Users */}
               </div>
-              
+
               <ErrorBoundary>
-                {addState ? (
-                  <AddUserForm />
-                ) : (
-                  <DummyTable userdata={ClientData} isLoaded />
-                )}
+                <DummyTable userdata={ClientData} />
               </ErrorBoundary>
             </div>
           </div>
