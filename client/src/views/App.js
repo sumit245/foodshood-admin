@@ -15,6 +15,7 @@ import AddRestaurantPage from "./screens/AddRestaurantPage";
 import RestaurantScreen from "./screens/RestaurantScreen";
 import ViewUser from './screens/ViewUser'
 import EditRestaurant from './screens/EditRestaurant'
+import ViewRestaurant from "./screens/ViewRestaurant";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -50,6 +51,7 @@ export default class App extends Component {
           <Route path="/restaurant-add" component={AddRestaurantPage} />
           <Route path="/restaurant-dashboard" component={RestaurantScreen} />
           <Route path="/edit-restaurant" component={EditRestaurant} />
+          <Route path="/view-restaurant" component={ViewRestaurant} />
           <Route path="/logout" component={Logout} />
           <Route path="/settings" component={Settings} />
         </BrowserRouter>
