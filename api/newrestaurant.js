@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const NewRestaurant = require("../models/newrestaurant.model");
+const NewRestaurant = require("../models/newRestaurant.model");
 
 router.route("/").get(function (req, res) {
     NewRestaurant.find(function (err, factories) {
