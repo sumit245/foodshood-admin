@@ -9,10 +9,8 @@ let Users = new Schema({
     type: String,
   },
   profile_picture: {
-    data:Buffer,
-    contentType:String,
+    type:String
   },
-
   phone: {
     type: String,
   },
@@ -26,7 +24,6 @@ let Users = new Schema({
     locality: {
       type: String,
     },
-  
     sector: {
       type: String,
     },

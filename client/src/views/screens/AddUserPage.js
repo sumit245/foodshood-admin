@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AddUserForm from "../components/AddUserForm";
+import AddUserForm from "../components/users/create/AddUserForm";
 import SideNav from "../components/SideNav";
 import TopNav from "../components/TopNav";
 

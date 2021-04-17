@@ -2,18 +2,18 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let NewRestaurant = Schema({
     about: { type: String },
-    address: {
-        area: { type: String },
-        city: { type: String },
-        country: { type: String },
-        postal_code: { type: String },
-        state: { type: String }
-    },
+    area: { type: String },
+    locality: { type: String },
+    city: { type: String },
+    country: { type: String },
+    postal_code: { type: String },
+    state: { type: String },
     cuisine_type: { type: String },
     email: { type: String },
     owner_name: { type: String },
     phone: { type: String },
     restaurant_name: { type: String },
+    commission:{type:String},
     status: { type: String },
     documents: {
         type: Array,
@@ -52,8 +52,8 @@ let NewRestaurant = Schema({
             customer_2price: { type: String }
         },
         fifteenPlan: {
-            base_2price: { type: String },
-            customer_2price: { type: String }
+            base_15price: { type: String },
+            customer_15price: { type: String }
         },
         thirtyPlan: {
             base_30price: { type: String },

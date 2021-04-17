@@ -6,7 +6,7 @@ import {
   getClients,
   deleteClient,
 } from "../../controllers/ClientController";
-import AddUserForm from "./AddUserForm";
+import AddUserForm from "./users/create/AddUserForm";
 import $ from "jquery";
 import { renderToString } from "react-dom/server";
 import { arrayFindObjectByProp } from "../../helper/arrayFindObjectByProp";

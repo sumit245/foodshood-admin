@@ -37,6 +37,7 @@ router.route("/").post(function (req, res) {
         });
 });
 //save a restaurant
+
 router.route("/:id").get(function (req, res) {
     let id = req.params.id;
     NewRestaurant.findById(id, function (err, restaurant) {
@@ -45,17 +46,6 @@ router.route("/:id").get(function (req, res) {
 });
 //get specific restaurant
 
-router.route("/:id").delete((req, res, next) => {
-    NewRestaurant.findByIdAndDelete(req.params.id, (err, data) => {
-        if (err) {
-            console.log(next(err));
-            res.status(200).json({ data: "deleted" });
-        } else {
-            console.log("deleted successfully");
-        }
-    });
-});
-//delete a restaurant
 
 //update a restaurant
 

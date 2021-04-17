@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SideNav from "../components/SideNav";
 import TopNav from "../components/TopNav";
-import DummyTable from "../components/DummyTable";
+import DummyTable from "../components/users/read/DummyTable";
 import { getClients } from "../../controllers/ClientController";
 import ErrorBoundary from "../components/ErrorBoundary";
 import {
