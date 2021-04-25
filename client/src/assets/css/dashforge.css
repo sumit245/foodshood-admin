@@ -40537,8 +40537,10 @@ a.bg-twitter:hover, a.bg-twitter:focus, button.bg-twitter:hover, button.bg-twitt
 /* Style the tab content */
 .resttab {
   display: none;
-  padding: 1px 1px 0px 0px;
-  margin:-1px -1px 0px -10px;
+  padding: 0px 5px 0px 5px;
+  margin:0px -15px 0px -15px;
   border: 1px solid #ccc;
   border-top: none;
+  background-color:'#fff';
+  z-index:100
 }

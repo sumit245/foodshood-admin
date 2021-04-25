@@ -16,6 +16,7 @@ import RestaurantScreen from "./screens/RestaurantScreen";
 import ViewUser from './screens/ViewUser'
 import EditRestaurant from './screens/EditRestaurant'
 import ViewRestaurant from "./screens/ViewRestaurant";
+import RequestScreen from "./screens/RequestScreen";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +46,7 @@ export default class App extends Component {
           )}
           <Route path="/forgotpage" component={ForgotPage} />
           <Route path="/users-dashboard" component={HomeScreen} />
-          <Route path="/view-user" component={ViewUser}/>
+          <Route path="/view-user" component={ViewUser} />
           <Route path="/add-user" component={AddUserPage} />
           <Route path="/edit-user" component={EditUserPage} />
           <Route path="/restaurant-add" component={AddRestaurantPage} />
@@ -54,6 +55,7 @@ export default class App extends Component {
           <Route path="/view-restaurant" component={ViewRestaurant} />
           <Route path="/logout" component={Logout} />
           <Route path="/settings" component={Settings} />
+          <Route path="/requests" component={RequestScreen} />
         </BrowserRouter>
       </>
     );

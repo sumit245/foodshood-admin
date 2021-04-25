@@ -9,7 +9,7 @@ let Users = new Schema({
     type: String,
   },
   profile_picture: {
-    type:String
+    type: String
   },
   phone: {
     type: String,
@@ -27,24 +27,24 @@ let Users = new Schema({
     sector: {
       type: String,
     },
-    block: {
+    address_type: {
       type: String,
     },
     city: {
       type: String,
     },
-    state:{
-        type:String
+    state: {
+      type: String
     },
     country: {
-      type:String
+      type: String
     },
-    postal_code:{
-      type:String
+    postal_code: {
+      type: String
     },
-    geo:{
-      lat:{type: String},
-      lng:{type: String}
+    geo: {
+      lat: { type: String },
+      lng: { type: String }
     }
   },
   status: {

@@ -13,14 +13,15 @@ const cuisine = require("./api/cuisine")
 const checkout = require('./api/checkoutoptions')
 const newrest = require('./api/newrestaurant')
 const coupon = require('./api/coupon')
+const partner = require('./api/partnerrequest')
 const restaurantlogin = require("./api/restaurantlogin");
 
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(bodyParser.json({ limit: '16mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit: '16mb', extended: true }))
+app.use(bodyParser.json({ limit: '100mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }))
 
 app.use(cors());
 app.use("/api/restaurant", restaurant)
@@ -33,6 +34,7 @@ app.use("/api/cuisine", cuisine)
 app.use("/api/newrest", newrest)
 app.use("/api/checkout", checkout)
 app.use("/api/coupon", coupon)
+app.use("/api/partnerrequest", partner)
 app.use("/api/restaurantlogin", restaurantlogin);
 
 if (process.env.NODE_ENV == 'production') {
