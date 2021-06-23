@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
-import food from '../../assets/img/food.jpg'
-import img18 from '../../assets/img/img18.jpg'
+import img15 from '../../assets/img/img15.png'
+import img18 from '../../assets/img/img18.png'
 
 export default class LoginScreen extends Component {
   state = { username: "", password: "" }
@@ -43,7 +43,7 @@ export default class LoginScreen extends Component {
             <div className="media align-items-stretch justify-content-center ht-100p pos-relative">
               <div className="media-body align-items-center d-none d-lg-flex">
                 <div className="mx-wd-600">
-                  <img src={food} className="img-fluid" alt="" />
+                  <img src={img15} className="img-fluid" alt="" />
                 </div>
               </div>{/* media-body */}
               <div className="sign-wrapper mg-lg-l-50 mg-xl-l-60">

@@ -66,7 +66,7 @@ export default class SideNav extends Component {
                   to="/users-dashboard"
                   id="userDashboard"
                   className="nav-link mg-t-0 mt-0 mg-b-0"
-                  style={{height:'auto'}}
+                  style={{ height: 'auto' }}
                 >
                   {" "}
                   Dashboard
@@ -75,7 +75,7 @@ export default class SideNav extends Component {
                   to="/add-user"
                   id="addUser"
                   className="nav-link mg-t-0 mt-0 mg-b-0"
-                  style={{height:'auto'}}
+                  style={{ height: 'auto' }}
                 >
                   {" "}
                   Add Users
@@ -103,78 +103,39 @@ export default class SideNav extends Component {
                   to="/restaurant-dashboard"
                   id="dashRestaurant"
                   className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
+                  style={{ height: 'auto', textAlign: 'left' }}
                 >Dashboard
                 </Link>
                 <Link
                   to="/restaurant-unapproved"
                   id="unapprovedRestaurant"
                   className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
+                  style={{ height: 'auto', textAlign: 'left' }}
                 >Unapproved</Link>
                 <Link
                   to="/restaurant-add"
                   id="addRestaurant"
                   className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
+                  style={{ height: 'auto', textAlign: 'left' }}
                 >Add New</Link>
               </div>
             </div>
             {/* Restaurant */}
-            <div>
-              <p
-                style={{ cursor: "pointer" }}
-                id="orderDash"
-                className="collapsible"
+            <Link
+              to="/view-order"
+              id="viewOrders"
+              className="nav-link mg-t-0 py-0 mt-0"
+              style={{ height: 'auto', textAlign: 'left' }}
+            >
+              <span
+                data-toggle="tooltip"
+                title="Orders"
+                data-placement="right"
               >
-                <span
-                  data-toggle="tooltip"
-                  title="Orders"
-                  data-placement="right"
-                >
-                  <MdShoppingCart size={18} />
+                <MdShoppingCart size={18} />
                   &nbsp;Orders
                 </span>
-              </p>
-              <div className="collapse-content">
-                <Link
-                  to="/view-all"
-                  id="viewOrders"
-                  className="nav-link mg-t-0 py-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
-                >
-                  {" "}
-                  View All
-                </Link>
-                <Link
-                  to="/add-orders"
-                  id="addOrders"
-                  className="nav-link mg-t-0 py-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
-                >
-                  {" "}
-                  Add Order
-                </Link>
-                <Link
-                  to="/cancelled-orders"
-                  id="cancelledOrders"
-                  className="nav-link mg-t-0 py-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
-                >
-                  {" "}
-                  Cancelled
-                </Link>
-                <Link
-                  to="/accepted-orders"
-                  id="acceptedOrders"
-                  className="nav-link mg-t-0 py-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
-                >
-                  {" "}
-                  Accepted
-                </Link>
-              </div>
-            </div>
+            </Link>
             {/* orders */}
             <div>
               <p
@@ -196,19 +157,19 @@ export default class SideNav extends Component {
                   to="/invoice-view"
                   id="viewInvoice"
                   className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
+                  style={{ height: 'auto', textAlign: 'left' }}
                 >View All</Link>
                 <Link
                   to="/add-invoice"
                   id="invoiceAdd"
                   className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
+                  style={{ height: 'auto', textAlign: 'left' }}
                 >Add</Link>
                 <Link
                   to="/edit-invoice"
                   id="invoiceEdits"
                   className="nav-link mg-t-0 py-0 mg-b-0 mt-0"
-                  style={{height:'auto',textAlign:'left'}}
+                  style={{ height: 'auto', textAlign: 'left' }}
                 >Edit</Link>
               </div>
             </div>

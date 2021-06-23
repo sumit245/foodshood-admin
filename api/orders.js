@@ -3,18 +3,18 @@ const router = express.Router();
 const Order = require("../models/orders.model");
 
 router.route("/").get(function (req, res) {
-  Restaurant.find(function (err, factories) {
+  Order.find(function (err, order) {
     if (err) {
       console.log(err);
     } else {
-      res.json(factories);
+      res.json(order);
     }
   });
 });
 //get all factories
 
 router.route("/:id").delete((req, res, next) => {
-  Restaurant.findByIdAndDelete(req.params.id, (err, data) => {
+  Order.findByIdAndDelete(req.params.id, (err, data) => {
     if (err) {
       console.log(next(err));
       res.status(200).json({ data: "deleted" });
@@ -23,57 +23,57 @@ router.route("/:id").delete((req, res, next) => {
     }
   });
 });
-//delete a restaurant
+//delete a order
 
 router.route("/").post(function (req, res) {
-  let restaurant = new Restaurant(req.body);
-  restaurant
+  let order = new Order(req.body);
+  order
     .save()
-    .then((restaurant) => {
-      res.status(200).json({ restaurant: "restaurant added successfully" });
+    .then((order) => {
+      res.status(200).json({ order: "order added successfully" });
     })
     .catch((err) => {
       res.status(400).send("Failed");
     });
 });
-//save a restaurant
+//save a order
 router.route("/:id").get(function (req, res) {
   let id = req.params.id;
-  Restaurant.findById(id, function (err, restaurant) {
-    res.json(restaurant);
+  Order.findById(id, function (err, order) {
+    res.json(order);
   });
 });
-//get specific restaurant
+//get specific order
 
-router.route("/:id").put(function (req, res) {
-  Restaurant.findById(req.params.id, function (err, restaurant) {
-    if (!restaurant) res.status(404).send("data is not found");
+router.route("/:id").post(function (req, res) {
+  Order.findById(req.params.id, function (err, order) {
+    if (!order) res.status(404).send("data is not found");
     else
-      (restaurant.client_name = req.body.client_name),
-        (restaurant.restaurant_name = req.body.restaurant_name),
-        (restaurant.email = req.body.email),
-        (restaurant.owner_name = req.body.owner_name),
-        (restaurant.cuisine_type = req.body.cuisine_type),
-        (restaurant.city = req.body.city),
-        (restaurant.area = req.body.area),
-        (restaurant.phone = req.body.phone),
-        (restaurant.address = req.body.address),
-        (restaurant.postal_code = req.body.postal_code),
-        (restaurant.image =req.body.image),
-        (restaurant.food_name=req.body.food_name),
-        (restaurant.documents = req.body.documents),
-        (restaurant.business_hours = req.body.business_hours),
-        (restaurant.commissions = req.body.commissions)
-        restaurant
-          .save()
-          .then((restaurant) => {
-            res.json("Client Update Successfully");
-          })
-          .catch((err) => {
-            res.status(400).send("Update not possible");
-          });
+      (order.client_name = req.body.client_name),
+        (order.restaurant_name = req.body.restaurant_name),
+        (order.email = req.body.email),
+        (order.owner_name = req.body.owner_name),
+        (order.cuisine_type = req.body.cuisine_type),
+        (order.city = req.body.city),
+        (order.area = req.body.area),
+        (order.phone = req.body.phone),
+        (order.address = req.body.address),
+        (order.postal_code = req.body.postal_code),
+        (order.image = req.body.image),
+        (order.food_name = req.body.food_name),
+        (order.documents = req.body.documents),
+        (order.business_hours = req.body.business_hours),
+        (order.commissions = req.body.commissions)
+    order
+      .save()
+      .then((order) => {
+        res.json("Order Update Successfully");
+      })
+      .catch((err) => {
+        res.status(400).send("Update not possible");
+      });
   });
 });
-//update a restaurant
+//update a order
 
 module.exports = router;

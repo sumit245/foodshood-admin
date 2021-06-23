@@ -11,6 +11,7 @@ import CompanySetup from "../components/CompanySetup";
 import Smssetup from "../components/Smssetup";
 import ProfitMargin from '../components/ProfitMargin'
 import Cuisine from '../components/Cuisine'
+import ServiceCharges from '../components/settings/ServiceCharges'
 import { Link } from 'react-router-dom'
 
 export default class Settings extends Component {
@@ -73,6 +74,16 @@ export default class Settings extends Component {
         $("#profit").removeClass("active");
         $("#sms").removeClass("active");
         $("#cuisine").addClass("active");
+        break;
+      case "servicecharges":
+        this.setState({ url: "servicecharges" });
+        $("#users").removeClass("active");
+        $("#profile").removeClass("active");
+        $("#company").removeClass("active");
+        $("#profit").removeClass("active");
+        $("#sms").removeClass("active");
+        $("#cuisine").removeClass("active");
+        $("#servicecharges").addClass("active");
         break;
       default:
         break;
@@ -173,6 +184,16 @@ export default class Settings extends Component {
                       </li>
                       <li
                         className="nav-item"
+                        onClick={() => this.handleChange("servicecharges")}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <Link className="nav-link" id="servicecharges">
+                          <DollarSign />
+                          Service Charges
+                        </Link>
+                      </li>
+                      <li
+                        className="nav-item"
                         onClick={() => this.handleChange("cuisine")}
                         style={{ cursor: "pointer" }}
                       >
@@ -193,7 +214,7 @@ export default class Settings extends Component {
                   </ul>
                 </div>
               </div>
-              {url === "settingProfile" ? <ViewProfile /> : url === 'settingCompany' ? <CompanySetup /> : url === "settingSMS" ? <Smssetup /> : url === "profit" ? <ProfitMargin /> : url === "cuisine" ? <Cuisine /> : <CreateUserForm />}
+              {url === "settingProfile" ? <ViewProfile /> : url === 'settingCompany' ? <CompanySetup /> : url === "settingSMS" ? <Smssetup /> : url === "profit" ? <ProfitMargin /> : url === "cuisine" ? <Cuisine /> : url === "servicecharges" ? <ServiceCharges /> : <CreateUserForm />}
             </div>
             {/* df-example */}
           </div>

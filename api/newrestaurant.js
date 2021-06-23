@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const NewRestaurant = require("../models/newRestaurant.model");
+const NewRestaurant = require("../models/newrest.model");
 
 router.route("/").get(function (req, res) {
     NewRestaurant.find(function (err, factories) {
@@ -11,7 +11,26 @@ router.route("/").get(function (req, res) {
         }
     });
 });
-//get all factories
+//get all restaurants
+router.route("/login").post(function (req, res) {
+    console.log(req.body.email);
+    NewRestaurant.findOne({ email: req.body.email }).then(profile => {
+        if (!profile) {
+            res.send("User does not exist")
+        } else {
+            if (profile.phone === req.body.phone) {
+                res.send(profile)
+            }
+            else {
+                res.send("Authentication Failed")
+            }
+        }
+    }).catch(err => {
+        console.log("Error is", err.message);
+    })
+
+});
+//get all restaurants
 
 router.route("/:id").delete((req, res, next) => {
     NewRestaurant.findByIdAndDelete(req.params.id, (err, data) => {
@@ -50,7 +69,7 @@ router.route("/:id").post(function (req, res) {
                 (restaurant.state = req.body.state),
                 (restaurant.country = req.body.country),
                 (restaurant.postal_code = req.body.postal_code),
-                (restaurant.cousine_type = req.body.cousine_type),
+                (restaurant.cuisine_type = req.body.cuisine_type),
                 (restaurant.commission = req.body.commission),
                 (restaurant.status = req.body.status),
                 (restaurant.about = req.body.about),
@@ -68,7 +87,14 @@ router.route("/:id").post(function (req, res) {
                     });
     })
 });
-//save a restaurant
+//update a restaurant
+router.route("/:id").put(function (req, res, next) {
+    NewRestaurant.findByIdAndUpdate(req.params.id, req.body, function (err, restaurant) {
+        if (err) return next(err);
+        res.json(restaurant)
+    })
+});
+//update a restaurant
 
 router.route("/:id").get(function (req, res) {
     let id = req.params.id;
